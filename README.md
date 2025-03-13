@@ -45,7 +45,7 @@ Ensure you have:
 ### Installation
 
 ```sh
-git clone https://github.com/your-username/ro-probleme-affectation-frontend.git
+git clone https://github.com/NoobCoders57/ro-probleme-affectation-frontend.git
 cd ro-probleme-affectation-frontend
 npm install
 ```
