@@ -13,6 +13,7 @@ matrices, visualize the solving process step by step, and display the optimal so
   * [Getting Started](#getting-started)
     * [Prerequisites](#prerequisites)
     * [Installation](#installation)
+    * [Configuration](#configuration)
     * [Running the Project](#running-the-project)
   * [Contributing](#contributing)
   * [License](#license)
@@ -49,6 +50,10 @@ git clone https://github.com/NoobCoders57/ro-probleme-affectation-frontend.git
 cd ro-probleme-affectation-frontend
 npm install
 ```
+
+### Configuration
+
+Copy `.env.example` to `.env` and set the environment keys.
 
 ### Running the Project
 
