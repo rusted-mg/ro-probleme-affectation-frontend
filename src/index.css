@@ -4,8 +4,8 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #ffffff;
+  color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -42,22 +42,33 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
-
+input, select {
+  background-color: white;
+  color: #242424;
+}
+table tr td {
+  border-collapse: collapse;
+  border: solid black 1px;
+  padding: 5px;
+}
+.matrix-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: #ffffff;
+    background-color: #213547;
   }
   a:hover {
     color: #747bff;

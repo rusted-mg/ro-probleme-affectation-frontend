@@ -56,7 +56,9 @@ export const InputForm = (props: InputFormProps) => {
                 </select>
             </label>
             <br/>
-            <MatrixInput matrix={matrix} onMatrixChange={handleMatrixChange}/>
+            <div className="matrix-container">
+                <MatrixInput matrix={matrix} onMatrixChange={handleMatrixChange}/>
+            </div>
             <button onClick={handleSubmit}>Résoudre</button>
         </>
     )
