@@ -20,10 +20,12 @@ const Workspace: React.FC = () => {
 
     return (
         <div>
-            <Link to="/" className="home-link">← Back to Home</Link>
+            <div>
+                <Link to="/" className="home-link">← Back to Home</Link>
+            </div>
             <InputForm onSubmit={handleFormSubmit}/>
             {(query.isLoading || (query.isSuccess && query.data?.job.status != "COMPLETED")) && (
-                <div>Solving...</div>
+                <div>Résolution...</div>
             )}
             {(query.isSuccess && query.data?.job.status == "COMPLETED") && (
                 <div>

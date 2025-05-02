@@ -1,6 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@theme {
+  --color-primary: #3b82f6;
+}
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -40,6 +41,8 @@ h1 {
 }
 
 button {
+  background-color: var(--color-primary);
+  color: var(--color-white);
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
