@@ -18,6 +18,35 @@
 .tsqd-open-btn-container.hide {
   visibility: hidden;
 }
+
+/* Lading Page */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    text-align: center;
+}
+.content {
+    max-width: 1000px;
+    padding: 20px;
+}
+.heading {
+    font-size: 3.3rem;
+    margin-bottom: 2.5rem;
+}
+.text {
+    font-size: 1.125rem;
+    color: #4a5568;
+    margin-bottom: 2.5rem;
+}
+.buttonGroup {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
