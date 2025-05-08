@@ -49,7 +49,7 @@ const SuccessState: React.FC<{ optimalValue: number; solution: number[] }> = ({ 
 
 export const Output: React.FC<OutputProps> = ({ solved, query }) => {
     return (
-        <div className="p-6 bg-gray-100 rounded-lg max-w-lg mx-auto">
+        <div className="p-6 rounded-lg max-w-lg mx-auto">
             {(query.isLoading || (query.isSuccess && query.data?.job.status !== "COMPLETED")) && (
                 <LoadingState />
             )}

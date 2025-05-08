@@ -23,7 +23,7 @@ export const Sidebar = ({
     handleExportToPdf
 }: SidebarProps) => {
     return (
-        <div data-aos="fade-left" className="fixed bg-white p-5 shadow-md z-10 top-0 right-0 h-screen">
+        <div data-aos="fade-left" className="fixed bg-white p-5 shadow-md z-10 top-0 right-0 h-full">
             <label className="block mb-2">
                 <p className="block text-left text-gray-700 text-sm font-bold mb-2" >
                     Dimension de la matrice :

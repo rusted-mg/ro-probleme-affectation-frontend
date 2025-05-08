@@ -22,12 +22,12 @@ const Workspace: React.FC = () => {
     };
 
     return (
-        <div className="workspace">
+        <div className="workspace min-h-screen">
             <div data-aos="fade-down" className="fixed top-5 left-10 flex items-center justify-center gap-2 bg-white p-4 shadow-sm rounded-lg z-10">
                 <Link to="/" className="home-link text-lg">←</Link>
                 <p className="font-bold border-l border-gray-200 px-2">Optimizer workspace</p>
             </div>
-            <div className="flex items-center justify-center gap-15 w-100">
+            <div className="flex items-center justify-center gap-15">
                 <InputForm solved={solved} setSolved={setSolved} onSubmit={handleFormSubmit}/>
                 <Output solved={solved} query={query}/>
             </div>

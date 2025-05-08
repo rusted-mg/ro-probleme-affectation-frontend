@@ -24,11 +24,8 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--color-blue-500);
   text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
 }
 
 h1 {
@@ -37,7 +34,7 @@ h1 {
 }
 
 button {
-  border-radius: 50px;
+  border-radius: 5px;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
@@ -54,9 +51,8 @@ input, select {
   color: #242424;
 }
 table tr td {
-  border: solid var(--color-gray-100) 5px;
+  border: solid var(--color-gray-300) 2px;
   padding: 10px;
-  box-shadow: 0 0 0 3px var(--color-gray-100);
 }
 .matrix-container {
   display: flex;
@@ -68,8 +64,11 @@ table tr td {
 .workspace {
   padding: 40vh 40vw;
   width: fit-content;
-  min-height: 100vh;
-  background-color: var(--color-gray-100);
+  background-image: radial-gradient(circle, #ccc 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+.debug {
+  border: solid red 1px !important;
 }
 @media (prefers-color-scheme: light) {
   :root {

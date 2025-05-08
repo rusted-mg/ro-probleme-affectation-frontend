@@ -63,10 +63,10 @@ const MatrixTable = ({
     return (
         <div
             data-aos="fade-in"
-            className="overflow-auto border border-gray-200"
+            className="overflow-auto"
             style={{ transform: `scale(${zoom / 100})`, transformOrigin: "top left" }}
         >
-            <table className="border border-collapse bg-white">
+            <table className="bg-white">
                 <tbody>
                     {matrix.map((row, r) => (
                         <tr key={r}>
