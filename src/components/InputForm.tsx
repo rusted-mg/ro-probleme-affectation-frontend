@@ -9,6 +9,8 @@ export interface InputFormSubmitEvent {
 
 interface InputFormProps {
     onSubmit: (event: InputFormSubmitEvent) => void;
+    solved: boolean;
+    setSolved: (value: boolean) => void;
 }
 
 export const InputForm = (props: InputFormProps) => {
@@ -41,18 +43,30 @@ export const InputForm = (props: InputFormProps) => {
         props.onSubmit({ matrix: matrixInput, optimization: optimization });
     };
 
+    const handleReset = () => {
+        setMatrixSize(2);
+        setMatrix([[null, null], [null, null]]);
+        setOptimization("MIN");
+        props.setSolved(false);
+    };
+
+    const handleExportToPdf = () => {
+        //
+    };
+
     return (
-        <div className="workspace-container">
-            <div className="matrix-container">
-                <MatrixInput matrix={matrix} onMatrixChange={handleMatrixChange} />
-            </div>
+        <>
+            <MatrixInput matrix={matrix} onMatrixChange={handleMatrixChange} />
             <Sidebar 
+                solved={props.solved}
                 matrixSize={matrixSize} 
                 optimization={optimization} 
                 setOptimization={setOptimization} 
                 handleMatrixSizeChange={handleMatrixSizeChange} 
                 handleSubmit={handleSubmit} 
+                handleReset={handleReset} 
+                handleExportToPdf={handleExportToPdf} 
             />
-        </div>
+        </>
     );
 };

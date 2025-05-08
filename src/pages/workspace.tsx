@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 const Workspace: React.FC = () => {
     const [jobId, setJobId] = useState<string>();
+    const [solved, setSolved] = useState<boolean>(false);
     const query = useQuery({
         queryKey: ["solverJob", jobId],
         queryFn: () => solverService.getJob(jobId as string),
@@ -16,18 +17,20 @@ const Workspace: React.FC = () => {
     const handleFormSubmit = async (e: InputFormSubmitEvent) => {
         const uuid = await solverService.launchJob(e.matrix, e.optimization === "MAX" ? e.optimization : "MIN");
         setJobId(uuid);
+        setSolved(true);
     };
 
     return (
-        <div>
-            <div className="absolute top-5 left-10">
-                <Link to="/" className="home-link">← Retourner à l'accueil</Link>
+        <div className="workspace">
+            <div className="fixed top-5 left-10 flex items-center justify-center gap-2 bg-white p-4 shadow-sm rounded-lg">
+                <Link to="/" className="home-link text-lg">←</Link>
+                <p className="font-bold border-l border-gray-200 px-2">Optimizer workspace</p>
             </div>
-            <InputForm onSubmit={handleFormSubmit}/>
+            <InputForm solved={solved} setSolved={setSolved} onSubmit={handleFormSubmit}/>
             {(query.isLoading || (query.isSuccess && query.data?.job.status != "COMPLETED")) && (
                 <div>Résolution...</div>
             )}
-            {(query.isSuccess && query.data?.job.status == "COMPLETED") && (
+            {(query.isSuccess && query.data?.job.status == "COMPLETED" && solved) && (
                 <div>
                     <div>La valeur optimale est <strong>{query.data?.job.result?.optimalValue}</strong></div>
                     <div>L'affectation optimale est :

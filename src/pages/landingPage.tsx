@@ -12,7 +12,7 @@ const LandingPage: React.FC = () => {
                 </p>
                 <div className="buttonGroup">
                     <Link to="/workspace" className="home-link">
-                        <button>Commencer</button>
+                        <button className="bg-blue-200">Commencer</button>
                     </Link>
                 </div>
             </div>
