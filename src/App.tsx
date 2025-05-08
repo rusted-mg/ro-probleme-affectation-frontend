@@ -1,6 +1,6 @@
 import './App.css'
-import LandingPage from './pages/landingPage.tsx';
-import Workspace from './pages/workspace.tsx';
+import LandingPage from './pages/LandingPage.tsx';
+import Workspace from './pages/Workspace.tsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 const App: React.FC = () => {
