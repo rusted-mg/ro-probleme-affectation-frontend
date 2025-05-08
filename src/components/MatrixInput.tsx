@@ -23,7 +23,7 @@ const ZoomControls = ({
     onBlur: () => void;
 }) => {
     return (
-        <div className="absolute bottom-5 left-10 flex items-center shadow-sm bg-white p-1 rounded">
+        <div data-aos="fade-up" className="fixed bottom-5 left-10 flex items-center shadow-sm bg-white p-1 rounded z-10">
             <button onClick={onZoomOut} className="px-3 py-1 rounded">
                 -
             </button>
@@ -62,7 +62,8 @@ const MatrixTable = ({
 }) => {
     return (
         <div
-            className="overflow-auto"
+            data-aos="fade-in"
+            className="overflow-auto border border-gray-200"
             style={{ transform: `scale(${zoom / 100})`, transformOrigin: "top left" }}
         >
             <table className="border border-collapse bg-white">
@@ -74,9 +75,8 @@ const MatrixTable = ({
                                     <input
                                         type="number"
                                         value={val || ""}
-                                        className="w-12 border-none text-center"
+                                        className="w-12 border-none text-center placeholder:text-gray-300"
                                         required={true}
-                                        min={0}
                                         onChange={(e) => onMatrixChange(r, c, e.target.value)}
                                     />
                                 </td>

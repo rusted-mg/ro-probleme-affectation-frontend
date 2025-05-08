@@ -1,4 +1,5 @@
 import { ChangeEvent } from "react";
+import { AiOutlineReload, AiOutlineFilePdf, AiOutlinePlayCircle } from "react-icons/ai"; // Import icons
 
 interface SidebarProps {
     matrixSize: number;
@@ -22,7 +23,7 @@ export const Sidebar = ({
     handleExportToPdf
 }: SidebarProps) => {
     return (
-        <div className="fixed bg-white p-5 shadow-md z-10 top-0 right-0 h-full">
+        <div data-aos="fade-left" className="fixed bg-white p-5 shadow-md z-10 top-0 right-0 h-screen">
             <label className="block mb-2">
                 <p className="block text-left text-gray-700 text-sm font-bold mb-2" >
                     Dimension de la matrice :
@@ -56,16 +57,16 @@ export const Sidebar = ({
                 {
                     solved ? (
                         <>
-                            <button className="w-full bg-orange-200 text-orange-600 py-2 px-4 rounded" onClick={handleReset}>
-                                Réinitialiser
+                            <button className="w-full bg-orange-200 text-orange-600 py-2 px-4 rounded flex items-center justify-center" onClick={handleReset}>
+                                <AiOutlineReload className="mr-2" /> Réinitialiser
                             </button>
-                            <button className="w-full border border-orange-400 text-orange-400 py-2 px-4 rounded" onClick={handleExportToPdf}>
-                                Exporter en PDF
+                            <button className="w-full border border-orange-400 text-orange-400 py-2 px-4 rounded flex items-center justify-center" onClick={handleExportToPdf}>
+                                <AiOutlineFilePdf className="mr-2" /> Exporter en PDF
                             </button>
                         </>
                     ) : (
-                        <button className="w-full bg-blue-200 text-blue-500 py-2 px-4 rounded" onClick={handleSubmit}>
-                            Résoudre
+                        <button className="w-full bg-blue-200 text-blue-500 py-2 px-4 rounded flex items-center justify-center" onClick={handleSubmit}>
+                            <AiOutlinePlayCircle className="mr-2" /> Résoudre
                         </button>
                     )
                 }

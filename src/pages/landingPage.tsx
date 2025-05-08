@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 
 const LandingPage: React.FC = () => {
+    
     return (
-        <div className="container">
+        <div className="container" data-aos="fade-in">
             <div className="content">
                 <h1 className="heading">Optimisation de Problème d'Affectation</h1>
                 <p className="text">
