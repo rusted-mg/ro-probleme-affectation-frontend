@@ -30,8 +30,9 @@ export const InputForm = (props: InputFormProps) => {
     };
 
     const handleMatrixChange = (row: number, col: number, newValue: string) => {
-        const value = parseInt(newValue);
-        if (value && value !== matrix[row][col]) {
+        const value = isNaN(parseInt(newValue)) ? 0 : parseInt(newValue);
+
+        if (value !== null && value !== undefined && value !== matrix[row][col]) {
             setMatrix(matrix.map((_, r) => Array(matrixSize).fill(null)
                 .map((_, c) => (r === row && c === col) ? value : matrix[r][c])
             ));

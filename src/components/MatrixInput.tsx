@@ -111,7 +111,6 @@ export const MatrixInput = ({ matrix, onMatrixChange }: MatrixInputProps) => {
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
             />
-
             <MatrixTable matrix={matrix} zoom={zoom} onMatrixChange={onMatrixChange} />
         </div>
     );
