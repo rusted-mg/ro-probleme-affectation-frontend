@@ -65,8 +65,8 @@ table tr td:not(:first-child) {
   padding: 20px;
 }
 .workspace-container {
-  background-image: radial-gradient(circle, #ccc 1px, transparent 1px);
-  background-size: 30px 30px;
+  background-image: radial-gradient(circle, var(--color-gray-300) 1px, transparent 1px);
+  background-size: 40px 40px;
   padding: 40vh 35vw;
   width: fit-content;
 }

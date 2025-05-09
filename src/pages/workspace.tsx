@@ -6,6 +6,7 @@ import { Output } from "../components/Output.tsx";
 import { ZoomControls } from "../components/ZoomControls.tsx";
 import { Sidebar } from "../components/Sidebar.tsx";
 import { MatrixInput } from "../components/MatrixInput.tsx";
+import { generatePdf } from "../utils/pdf-generator.ts";
 
 const Workspace: React.FC = () => {
     const [jobId, setJobId] = useState<string>();
@@ -47,7 +48,7 @@ const Workspace: React.FC = () => {
         const matrixInput = matrix.map((row) => row.map((val) => val || 0));
         const uuid = await solverService.launchJob(matrixInput, optimization === "MAX" ? optimization : "MIN");
         setJobId(uuid);
-        window.scrollTo({ left: document.body.scrollWidth, behavior: "smooth" });
+        window.scrollTo({ top:0, left: document.body.scrollWidth, behavior: "smooth" });
     };
 
     const handleReset = () => {
@@ -57,8 +58,10 @@ const Workspace: React.FC = () => {
         setJobId("");
     };
 
-    const handleExportToPdf = () => {
-        //
+    const handleExportToPdf = async () => {
+        if (query.data?.job.result) {
+            generatePdf(optimization, query.data?.job.result?.optimalValue, query.data?.job.result?.solution || []);
+        }
     };
 
     return (
@@ -68,7 +71,7 @@ const Workspace: React.FC = () => {
                 <p className="font-bold border-l border-gray-200 px-2">Espace de travail</p>
             </div>
             <div className="workspace-main" style={{ transform: `scale(${zoom / 100})`, transformOrigin: "top left" }}>
-                <div className="flex items-center justify-center gap-15">
+                <div className="flex items-baseline justify-center gap-10">
                     <MatrixInput query={query} matrix={matrix} onMatrixChange={handleMatrixChange} />
                     <Output query={query}/>
                 </div>

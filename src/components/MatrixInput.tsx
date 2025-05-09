@@ -32,7 +32,7 @@ const MatrixTable = ({
             data-aos="fade-in"
             className="overflow-auto"
         >
-            <table className="bg-white">
+            <table id="matrix-table" className="bg-white">
                 <thead>
                     <tr>
                         <th></th>
