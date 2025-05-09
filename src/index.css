@@ -20,6 +20,7 @@
 
 * {
   transition: all 0.25s;
+  overflow: visible;
 }
 
 a {
@@ -62,7 +63,7 @@ table tr td:not(:first-child) {
   padding: 20px;
 }
 .workspace {
-  padding: 40vh 40vw;
+  padding: 40vh 30vw;
   width: fit-content;
   background-image: radial-gradient(circle, #ccc 1px, transparent 1px);
   background-size: 30px 30px;

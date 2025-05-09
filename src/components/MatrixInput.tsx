@@ -70,7 +70,7 @@ const MatrixTable = ({
                     <tr>
                         <th></th>
                         {matrix[0] && matrix[0].map((_, c) => (
-                            <th key={c} className="border-2 border-blue-200 px-2 py-1 text-center bg-blue-200 font-medium text-white">
+                            <th key={c} className="border-2 border-blue-300 bg-blue-300 text-center px-2 py-1 font-medium text-white">
                                 {c + 1}
                             </th>
                         ))}
@@ -79,7 +79,7 @@ const MatrixTable = ({
                 <tbody>
                     {matrix.map((row, r) => (
                         <tr key={r}>
-                            <td className="border-2 p-3 border-blue-200 text-center bg-blue-200 font-medium text-white">{r + 1}</td>
+                            <td className="border-2 p-3 border-blue-200 bg-blue-200 text-center font-medium text-white">{r + 1}</td>
                             {row.map((val, c) => (
                                 <td key={c} className="border">
                                     <input
@@ -95,6 +95,34 @@ const MatrixTable = ({
                     ))}
                 </tbody>
             </table>
+        </div>
+    );
+};
+
+const Indications = ({matrix}:{matrix: (number | null)[][]}) => {
+    return (
+        <div data-aos="fade-in" className="bg-white border-3 border-gray-100 p-4 rounded-md z-10 min-w-[300px]">
+            {
+                matrix.length > 0 ? (
+                    <p className="mb-2 font-bold">Commencez par remplir la matrice.</p>
+                ) : (
+                    <p className="mb-2 font-bold">Entrez d'abord le nombre de postes...</p>
+                )
+            }
+            {
+                matrix.length > 0 && (
+                    <div>
+                        <div className="flex items-center gap-2 mb-1">
+                            <div className="rounded-4xl bg-blue-300 p-2"></div>
+                            <p className="text-sm">Postes</p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <div className="rounded-4xl bg-blue-200 p-2"></div>
+                            <p className="text-sm">Candidats</p>
+                        </div>
+                    </div>
+                )
+            }
         </div>
     );
 };
@@ -121,7 +149,10 @@ export const MatrixInput = ({ matrix, onMatrixChange }: MatrixInputProps) => {
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
             />
-            <MatrixTable matrix={matrix} zoom={zoom} onMatrixChange={onMatrixChange} />
+            <div className="flex items-baseline justify-center gap-15">
+                <Indications matrix={matrix} />
+                <MatrixTable matrix={matrix} zoom={zoom} onMatrixChange={onMatrixChange} />
+            </div>
         </div>
     );
 };
