@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { InputForm, InputFormSubmitEvent } from "../components/InputForm.tsx";
@@ -15,10 +15,15 @@ const Workspace: React.FC = () => {
         refetchInterval: (query) => query.state.data?.job.status == "IN_PROGRESS" ? 2000 : false,
     });
 
+    useEffect(() => {
+        if (query.isSuccess && query.data?.job.status === "COMPLETED") {
+            setSolved(true);
+        }
+    }, [query.isSuccess, query.data]);
+
     const handleFormSubmit = async (e: InputFormSubmitEvent) => {
         const uuid = await solverService.launchJob(e.matrix, e.optimization === "MAX" ? e.optimization : "MIN");
         setJobId(uuid);
-        setSolved(true);
     };
 
     return (

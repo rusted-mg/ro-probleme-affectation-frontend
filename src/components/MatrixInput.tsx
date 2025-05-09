@@ -113,7 +113,7 @@ const Indications = ({
     return !removed && (
         <div
             data-aos="fade-in"
-            className="relative bg-white border-3 border-gray-100 p-4 rounded-md z-10 min-w-[300px]"
+            className="relative bg-white border-3 border-gray-100 p-4 rounded-md z-10 min-w-[250px]"
         >
             <button
                 onClick={handleRemove}
@@ -123,9 +123,9 @@ const Indications = ({
                 <FaTimes />
             </button>
             {matrix.length > 0 ? (
-                <p className="mb-2 font-bold">Commencez par remplir la matrice.</p>
+                <p className="mb-2 font-bold">Remplissez le tableau</p>
             ) : (
-                <p className="mb-2 font-bold">Entrez d'abord le nombre de postes...</p>
+                <p className="mb-2 font-bold">Commencez par entrer le nombre de postes</p>
             )}
             {matrix.length > 0 && (
                 <div>
