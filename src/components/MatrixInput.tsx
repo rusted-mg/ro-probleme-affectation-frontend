@@ -98,7 +98,7 @@ const MatrixTable = ({
                             <td className="border-2 p-3 border-blue-200 bg-blue-200 text-center font-medium text-white">{r + 1}</td>
                             {row.map((val, c) => {
                                 const cellClassName = `border ${ solution && solution[r] === c && "bg-green-200" }`;
-                                const inputClassName = `w-12 border-none text-center placeholder:text-gray-300 ${ solution && solution[r] === c && "solution-input"}`;
+                                const inputClassName = `w-12 border-none text-center placeholder:text-gray-400 focus:placeholder:text-white ${ solution && solution[r] === c && "solution-input" }`;
                                 
                                 return (
                                     <td key={c} className={cellClassName}>
@@ -106,6 +106,7 @@ const MatrixTable = ({
                                             type="number"
                                             value={val || ""}
                                             className={inputClassName}
+                                            placeholder="0"
                                             required={true}
                                             onChange={(e) => onMatrixChange(r, c, e.target.value)}
                                         />
