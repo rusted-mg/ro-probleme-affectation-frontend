@@ -4,7 +4,19 @@ import { AiOutlineReload, AiOutlineFilePdf, AiOutlinePlayCircle } from "react-ic
 interface SidebarProps {
     matrixSize: number;
     optimization: string;
-    solved: boolean;
+    query: {
+        isLoading: boolean;
+        isSuccess: boolean;
+        data?: {
+            job: {
+                status: string;
+                result?: {
+                    optimalValue: number;
+                    solution: number[];
+                };
+            };
+        };
+    };
     setOptimization: (value: string) => void;
     handleMatrixSizeChange: (e: ChangeEvent<HTMLInputElement>) => void;
     handleSubmit: () => void;
@@ -15,7 +27,7 @@ interface SidebarProps {
 export const Sidebar = ({ 
     matrixSize, 
     optimization, 
-    solved,
+    query,
     setOptimization, 
     handleMatrixSizeChange, 
     handleSubmit,
@@ -55,7 +67,7 @@ export const Sidebar = ({
             <br />
             <div className="space-y-2">
                 {
-                    solved ? (
+                    query.isSuccess && query.data?.job.status === "COMPLETED" && query.data?.job.result ? (
                         <>
                             <button className="w-full bg-orange-200 text-orange-600 py-2 px-4 rounded flex items-center justify-center" onClick={handleReset}>
                                 <AiOutlineReload className="mr-2" /> Réinitialiser

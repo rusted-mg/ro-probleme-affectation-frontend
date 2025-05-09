@@ -4,6 +4,19 @@ import { FaTimes } from "react-icons/fa";
 interface MatrixInputProps {
     matrix: (number | null)[][];
     onMatrixChange: (row: number, col: number, newValue: string) => void;
+    query: {
+        isLoading: boolean;
+        isSuccess: boolean;
+        data?: {
+            job: {
+                status: string;
+                result?: {
+                    optimalValue: number;
+                    solution: number[];
+                };
+            };
+        };
+    };
 }
 
 const ZoomControls = ({
@@ -54,10 +67,12 @@ const ZoomControls = ({
 const MatrixTable = ({
     matrix,
     zoom,
+    solution,
     onMatrixChange,
 }: {
     matrix: (number | null)[][];
     zoom: number;
+    solution: number[] | undefined;
     onMatrixChange: (row: number, col: number, newValue: string) => void;
 }) => {
     return (
@@ -81,17 +96,22 @@ const MatrixTable = ({
                     {matrix.map((row, r) => (
                         <tr key={r}>
                             <td className="border-2 p-3 border-blue-200 bg-blue-200 text-center font-medium text-white">{r + 1}</td>
-                            {row.map((val, c) => (
-                                <td key={c} className="border">
-                                    <input
-                                        type="number"
-                                        value={val || ""}
-                                        className="w-12 border-none text-center placeholder:text-gray-300"
-                                        required={true}
-                                        onChange={(e) => onMatrixChange(r, c, e.target.value)}
-                                    />
-                                </td>
-                            ))}
+                            {row.map((val, c) => {
+                                const cellClassName = `border ${ solution && solution[r] === c && "bg-green-200" }`;
+                                const inputClassName = `w-12 border-none text-center placeholder:text-gray-300 ${ solution && solution[r] === c && "solution-input"}`;
+                                
+                                return (
+                                    <td key={c} className={cellClassName}>
+                                        <input
+                                            type="number"
+                                            value={val || ""}
+                                            className={inputClassName}
+                                            required={true}
+                                            onChange={(e) => onMatrixChange(r, c, e.target.value)}
+                                        />
+                                    </td>
+                                )
+                            })}
                         </tr>
                     ))}
                 </tbody>
@@ -143,7 +163,7 @@ const Indications = ({
     );
 };
 
-export const MatrixInput = ({ matrix, onMatrixChange }: MatrixInputProps) => {
+export const MatrixInput = ({ matrix, query, onMatrixChange }: MatrixInputProps) => {
     const [zoom, setZoom] = useState(100);
     const [isFocused, setIsFocused] = useState(false);
 
@@ -167,7 +187,7 @@ export const MatrixInput = ({ matrix, onMatrixChange }: MatrixInputProps) => {
             />
             <div className="flex items-baseline justify-center gap-15">
                 <Indications matrix={matrix} />
-                <MatrixTable matrix={matrix} zoom={zoom} onMatrixChange={onMatrixChange} />
+                <MatrixTable solution={query.data?.job.result?.solution} matrix={matrix} zoom={zoom} onMatrixChange={onMatrixChange} />
             </div>
         </div>
     );

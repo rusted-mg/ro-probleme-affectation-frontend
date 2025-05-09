@@ -2,7 +2,6 @@ import React from "react";
 import { FaSpinner, FaCheckCircle } from "react-icons/fa";
 
 interface OutputProps {
-    solved: boolean;
     query: {
         isLoading: boolean;
         isSuccess: boolean;
@@ -47,13 +46,13 @@ const SuccessState: React.FC<{ optimalValue: number; solution: number[] }> = ({ 
     </div>
 );
 
-export const Output: React.FC<OutputProps> = ({ solved, query }) => {
+export const Output: React.FC<OutputProps> = ({ query }) => {
     return (
         <div className="p-6 rounded-lg max-w-lg mx-auto">
             {(query.isLoading || (query.isSuccess && query.data?.job.status !== "COMPLETED")) && (
                 <LoadingState />
             )}
-            {query.isSuccess && query.data?.job.status === "COMPLETED" && solved && query.data?.job.result && (
+            {query.isSuccess && query.data?.job.status === "COMPLETED" && query.data?.job.result && (
                 <SuccessState
                     optimalValue={query.data.job.result.optimalValue}
                     solution={query.data.job.result.solution}

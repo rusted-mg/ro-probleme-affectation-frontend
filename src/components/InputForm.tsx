@@ -9,8 +9,20 @@ export interface InputFormSubmitEvent {
 
 interface InputFormProps {
     onSubmit: (event: InputFormSubmitEvent) => void;
-    solved: boolean;
-    setSolved: (value: boolean) => void;
+    setJobId: (jobId: string) => void;
+    query: {
+        isLoading: boolean;
+        isSuccess: boolean;
+        data?: {
+            job: {
+                status: string;
+                result?: {
+                    optimalValue: number;
+                    solution: number[];
+                };
+            };
+        };
+    };
 }
 
 export const InputForm = (props: InputFormProps) => {
@@ -48,7 +60,7 @@ export const InputForm = (props: InputFormProps) => {
         setMatrixSize(2);
         setMatrix([[null, null], [null, null]]);
         setOptimization("MIN");
-        props.setSolved(false);
+        props.setJobId("");
     };
 
     const handleExportToPdf = () => {
@@ -57,9 +69,9 @@ export const InputForm = (props: InputFormProps) => {
 
     return (
         <>
-            <MatrixInput matrix={matrix} onMatrixChange={handleMatrixChange} />
+            <MatrixInput query={props.query} matrix={matrix} onMatrixChange={handleMatrixChange} />
             <Sidebar 
-                solved={props.solved}
+                query={props.query}
                 matrixSize={matrixSize} 
                 optimization={optimization} 
                 setOptimization={setOptimization} 
