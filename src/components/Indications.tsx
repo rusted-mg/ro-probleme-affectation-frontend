@@ -3,8 +3,10 @@ import { FaTimes } from "react-icons/fa";
 
 export const Indications = ({
     matrix,
+    solutionShowed,
 }: {
     matrix: (number | null)[][];
+    solutionShowed: false | { optimalValue: number; solution: number[]; } | undefined;
 }) => {
     const [removed, setRemoved] = useState(false);
 
@@ -25,13 +27,21 @@ export const Indications = ({
                     <p className="mb-2 font-bold">Remplissez le tableau</p>
                     <div>
                         <div className="flex items-center gap-2 mb-1">
-                            <div className="rounded-4xl bg-blue-300 p-2"></div>
+                            <div className="rounded-4xl bg-blue-500 p-2"></div>
                             <p className="text-sm">Postes</p>
                         </div>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 mb-1">
                             <div className="rounded-4xl bg-blue-200 p-2"></div>
                             <p className="text-sm">Candidats</p>
                         </div>
+                        {
+                            solutionShowed && (
+                                <div className="flex items-center gap-2">
+                                    <div className="rounded-4xl bg-green-200 p-2"></div>
+                                    <p className="text-sm">Solutions</p>
+                                </div>
+                            )
+                        }
                     </div>
                 </>
             ) : (

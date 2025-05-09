@@ -37,7 +37,7 @@ h1 {
 button:not(.no-padding) {
   padding: 0.6em 1.2em;
 }
-button {
+button:not(.landing-page-button) {
   border-radius: 5px;
   font-size: 1em;
   font-weight: 500;
@@ -54,7 +54,7 @@ input:not(.solution-input), select {
   color: #242424;
 }
 table tr td:not(:first-child) {
-  border: solid var(--color-gray-300) 2px;
+  border: solid var(--color-gray-200) 2px;
   padding: 10px;
 }
 .matrix-container {
@@ -65,7 +65,7 @@ table tr td:not(:first-child) {
   padding: 20px;
 }
 .workspace-container {
-  background-image: radial-gradient(circle, var(--color-gray-300) 1px, transparent 1px);
+  background-image: radial-gradient(circle, var(--color-blue-300) 1px, transparent 1px);
   background-size: 40px 40px;
   padding: 40vh 35vw;
   width: fit-content;

@@ -28,8 +28,23 @@
     padding: 20px;
 }
 .heading {
-    font-size: 4.3rem;
+    font-size: 4.55rem;
     margin-bottom: 2.5rem;
+    color:var(--color-blue-500);
+    background: 
+    linear-gradient(
+      137.48deg,
+      #1b4fde 10%,
+      #fe53bb 45%,
+      #8f51ea 67%,
+      #0044ff 87%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: gradient_301 5s ease infinite;
+    background-position: 100% 50%;
 }
 .text {
     font-size: 1.125rem;
