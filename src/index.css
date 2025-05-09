@@ -50,7 +50,7 @@ input, select {
   background-color: white;
   color: #242424;
 }
-table tr td {
+table tr td:not(:first-child) {
   border: solid var(--color-gray-300) 2px;
   padding: 10px;
 }

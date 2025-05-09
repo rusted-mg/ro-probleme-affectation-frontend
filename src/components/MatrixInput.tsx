@@ -50,7 +50,6 @@ const ZoomControls = ({
         </div>
     );
 };
-
 const MatrixTable = ({
     matrix,
     zoom,
@@ -67,9 +66,20 @@ const MatrixTable = ({
             style={{ transform: `scale(${zoom / 100})`, transformOrigin: "top left" }}
         >
             <table className="bg-white">
+                <thead>
+                    <tr>
+                        <th></th>
+                        {matrix[0] && matrix[0].map((_, c) => (
+                            <th key={c} className="border-2 border-blue-200 px-2 py-1 text-center bg-blue-200 font-medium text-white">
+                                {c + 1}
+                            </th>
+                        ))}
+                    </tr>
+                </thead>
                 <tbody>
                     {matrix.map((row, r) => (
                         <tr key={r}>
+                            <td className="border-2 p-3 border-blue-200 text-center bg-blue-200 font-medium text-white">{r + 1}</td>
                             {row.map((val, c) => (
                                 <td key={c} className="border">
                                     <input
