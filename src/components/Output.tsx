@@ -27,13 +27,13 @@ const LoadingState: React.FC = () => (
 const SuccessState: React.FC<{ optimalValue: number; solution: number[] }> = ({ optimalValue, solution }) => (
     <div data-aos="fade-in">
         <div className="flex items-center space-x-3 mb-4 text-green-700">
-            <FaCheckCircle className="h-6 w-6" />
+            <FaCheckCircle className="h-4 w-4" />
             <span>Résolution terminée !</span>
         </div>
-        <div className="mb-4">
+        <div className="mb-4 ml-[30px]">
             La valeur optimale est : <strong>{optimalValue}</strong>
         </div>
-        <div>
+        <div className="hidden">
             L'affectation optimale est :
             <ol className="list-decimal list-inside mt-2 space-y-1">
                 {solution.map((value, i) => (

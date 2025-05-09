@@ -69,6 +69,9 @@ export const Sidebar = ({
                 {
                     query.isSuccess && query.data?.job.status === "COMPLETED" && query.data?.job.result ? (
                         <>
+                            <button className="w-full bg-blue-200 text-blue-500 py-2 px-4 rounded flex items-center justify-center" onClick={handleSubmit}>
+                                <AiOutlinePlayCircle className="mr-2" /> Résoudre a nouveau
+                            </button>
                             <button className="w-full bg-orange-200 text-orange-600 py-2 px-4 rounded flex items-center justify-center" onClick={handleReset}>
                                 <AiOutlineReload className="mr-2" /> Réinitialiser
                             </button>
