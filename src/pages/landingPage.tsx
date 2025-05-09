@@ -5,7 +5,7 @@ const LandingPage: React.FC = () => {
     return (
         <div className="container" data-aos="fade-in">
             <div className="content">
-                <h1 className="heading">Optimisation de Problème d'Affectation</h1>
+                <h1 className="heading font-bold">Optimisation d'Affectation</h1>
                 <p className="text">
                     Bienvenue dans notre application dédiée à l'optimisation des problèmes
                     d'affectation. Simplifiez vos processus et trouvez les solutions les

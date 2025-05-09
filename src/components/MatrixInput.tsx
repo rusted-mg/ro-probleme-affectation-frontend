@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { FaTimes } from "react-icons/fa";
+import { Indications } from "./Indications";
 
 interface MatrixInputProps {
     matrix: (number | null)[][];
@@ -19,59 +18,12 @@ interface MatrixInputProps {
     };
 }
 
-const ZoomControls = ({
-    zoom,
-    isFocused,
-    onZoomIn,
-    onZoomOut,
-    onZoomChange,
-    onFocus,
-    onBlur,
-}: {
-    zoom: number;
-    isFocused: boolean;
-    onZoomIn: () => void;
-    onZoomOut: () => void;
-    onZoomChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    onFocus: () => void;
-    onBlur: () => void;
-}) => {
-    return (
-        <div data-aos="fade-up" className="fixed bottom-5 left-10 flex items-center shadow-sm bg-white p-1 rounded z-10">
-            <button onClick={onZoomOut} className="px-3 py-1 rounded">
-                -
-            </button>
-            <div className="relative border-r border-l border-gray-200 px-2">
-                <input
-                    type="number"
-                    value={zoom}
-                    onChange={onZoomChange}
-                    onFocus={onFocus}
-                    onBlur={onBlur}
-                    className="w-16 text-center rounded border border-gray-50"
-                    min={10}
-                    max={200}
-                />
-                {!isFocused && (
-                    <span className="absolute inset-y-0 right-2 flex items-center">
-                        %
-                    </span>
-                )}
-            </div>
-            <button onClick={onZoomIn} className="px-3 py-1 rounded">
-                +
-            </button>
-        </div>
-    );
-};
 const MatrixTable = ({
     matrix,
-    zoom,
     solution,
     onMatrixChange,
 }: {
     matrix: (number | null)[][];
-    zoom: number;
     solution: number[] | undefined;
     onMatrixChange: (row: number, col: number, newValue: string) => void;
 }) => {
@@ -79,7 +31,6 @@ const MatrixTable = ({
         <div
             data-aos="fade-in"
             className="overflow-auto"
-            style={{ transform: `scale(${zoom / 100})`, transformOrigin: "top left" }}
         >
             <table className="bg-white">
                 <thead>
@@ -120,75 +71,13 @@ const MatrixTable = ({
         </div>
     );
 };
-const Indications = ({
-    matrix,
-}: {
-    matrix: (number | null)[][];
-}) => {
-    const [removed, setRemoved] = useState(false);
-
-    const handleRemove = () => {
-        setRemoved(true);
-    }
-
-    return !removed && (
-        <div
-            data-aos="fade-in"
-            className="relative bg-white border-3 border-gray-100 p-4 rounded-md z-10 min-w-[250px]"
-        >
-            <button
-                onClick={handleRemove}
-                className="float-right text-gray-400 hover:text-gray-600 no-padding"
-                aria-label="Remove"
-            >
-                <FaTimes />
-            </button>
-            {matrix.length > 0 ? (
-                <p className="mb-2 font-bold">Remplissez le tableau</p>
-            ) : (
-                <p className="mb-2 font-bold">Commencez par entrer le nombre de postes</p>
-            )}
-            {matrix.length > 0 && (
-                <div>
-                    <div className="flex items-center gap-2 mb-1">
-                        <div className="rounded-4xl bg-blue-300 p-2"></div>
-                        <p className="text-sm">Postes</p>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <div className="rounded-4xl bg-blue-200 p-2"></div>
-                        <p className="text-sm">Candidats</p>
-                    </div>
-                </div>
-            )}
-        </div>
-    );
-};
 
 export const MatrixInput = ({ matrix, query, onMatrixChange }: MatrixInputProps) => {
-    const [zoom, setZoom] = useState(100);
-    const [isFocused, setIsFocused] = useState(false);
-
-    const handleZoomIn = () => setZoom((prev) => Math.min(prev + 10, 200));
-    const handleZoomOut = () => setZoom((prev) => Math.max(prev - 10, 10));
-    const handleZoomChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newZoom = Math.min(Math.max(Number(e.target.value), 0), 200);
-        setZoom(newZoom);
-    };
-
     return (
         <div>
-            <ZoomControls
-                zoom={zoom}
-                isFocused={isFocused}
-                onZoomIn={handleZoomIn}
-                onZoomOut={handleZoomOut}
-                onZoomChange={handleZoomChange}
-                onFocus={() => setIsFocused(true)}
-                onBlur={() => setIsFocused(false)}
-            />
             <div className="flex items-baseline justify-center gap-15">
                 <Indications matrix={matrix} />
-                <MatrixTable solution={query.data?.job.result?.solution} matrix={matrix} zoom={zoom} onMatrixChange={onMatrixChange} />
+                <MatrixTable solution={query.data?.job.result?.solution} matrix={matrix} onMatrixChange={onMatrixChange} />
             </div>
         </div>
     );

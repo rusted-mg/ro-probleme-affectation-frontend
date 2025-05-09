@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import { AiOutlineReload, AiOutlineFilePdf, AiOutlinePlayCircle } from "react-icons/ai"; // Import icons
+import { AiOutlineReload, AiOutlineFilePdf, AiOutlinePlayCircle } from "react-icons/ai";
 
 interface SidebarProps {
     matrixSize: number;
@@ -23,6 +23,37 @@ interface SidebarProps {
     handleReset: () => void;
     handleExportToPdf: () => void;
 }
+
+const ButtonContainer = ({ 
+    query, 
+    handleSubmit, 
+    handleReset, 
+    handleExportToPdf 
+}: Pick<SidebarProps, 'query' | 'handleSubmit' | 'handleReset' | 'handleExportToPdf'>) => {
+    return (
+        <div className="space-y-2">
+            {
+                query.isSuccess && query.data?.job.status === "COMPLETED" && query.data?.job.result ? (
+                    <>
+                        <button className="w-full bg-blue-200 text-blue-500 py-2 px-4 rounded flex items-center justify-center" onClick={handleSubmit}>
+                            <AiOutlinePlayCircle className="mr-2" /> Résoudre a nouveau
+                        </button>
+                        <button className="w-full bg-orange-200 text-orange-600 py-2 px-4 rounded flex items-center justify-center" onClick={handleReset}>
+                            <AiOutlineReload className="mr-2" /> Réinitialiser
+                        </button>
+                        <button className="w-full border border-orange-400 text-orange-400 py-2 px-4 rounded flex items-center justify-center" onClick={handleExportToPdf}>
+                            <AiOutlineFilePdf className="mr-2" /> Exporter en PDF
+                        </button>
+                    </>
+                ) : (
+                    <button className="w-full bg-blue-200 text-blue-500 py-2 px-4 rounded flex items-center justify-center" onClick={handleSubmit}>
+                        <AiOutlinePlayCircle className="mr-2" /> Résoudre
+                    </button>
+                )
+            }
+        </div>
+    );
+};
 
 export const Sidebar = ({ 
     matrixSize, 
@@ -65,27 +96,12 @@ export const Sidebar = ({
                 </select>
             </label>
             <br />
-            <div className="space-y-2">
-                {
-                    query.isSuccess && query.data?.job.status === "COMPLETED" && query.data?.job.result ? (
-                        <>
-                            <button className="w-full bg-blue-200 text-blue-500 py-2 px-4 rounded flex items-center justify-center" onClick={handleSubmit}>
-                                <AiOutlinePlayCircle className="mr-2" /> Résoudre a nouveau
-                            </button>
-                            <button className="w-full bg-orange-200 text-orange-600 py-2 px-4 rounded flex items-center justify-center" onClick={handleReset}>
-                                <AiOutlineReload className="mr-2" /> Réinitialiser
-                            </button>
-                            <button className="w-full border border-orange-400 text-orange-400 py-2 px-4 rounded flex items-center justify-center" onClick={handleExportToPdf}>
-                                <AiOutlineFilePdf className="mr-2" /> Exporter en PDF
-                            </button>
-                        </>
-                    ) : (
-                        <button className="w-full bg-blue-200 text-blue-500 py-2 px-4 rounded flex items-center justify-center" onClick={handleSubmit}>
-                            <AiOutlinePlayCircle className="mr-2" /> Résoudre
-                        </button>
-                    )
-                }
-            </div>
+            <ButtonContainer 
+                query={query} 
+                handleSubmit={handleSubmit} 
+                handleReset={handleReset} 
+                handleExportToPdf={handleExportToPdf} 
+            />
         </div>
     );
 };
