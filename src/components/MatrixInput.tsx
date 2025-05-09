@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FaTimes } from "react-icons/fa";
 
 interface MatrixInputProps {
     matrix: (number | null)[][];
@@ -98,31 +99,46 @@ const MatrixTable = ({
         </div>
     );
 };
+const Indications = ({
+    matrix,
+}: {
+    matrix: (number | null)[][];
+}) => {
+    const [removed, setRemoved] = useState(false);
 
-const Indications = ({matrix}:{matrix: (number | null)[][]}) => {
-    return (
-        <div data-aos="fade-in" className="bg-white border-3 border-gray-100 p-4 rounded-md z-10 min-w-[300px]">
-            {
-                matrix.length > 0 ? (
-                    <p className="mb-2 font-bold">Commencez par remplir la matrice.</p>
-                ) : (
-                    <p className="mb-2 font-bold">Entrez d'abord le nombre de postes...</p>
-                )
-            }
-            {
-                matrix.length > 0 && (
-                    <div>
-                        <div className="flex items-center gap-2 mb-1">
-                            <div className="rounded-4xl bg-blue-300 p-2"></div>
-                            <p className="text-sm">Postes</p>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <div className="rounded-4xl bg-blue-200 p-2"></div>
-                            <p className="text-sm">Candidats</p>
-                        </div>
+    const handleRemove = () => {
+        setRemoved(true);
+    }
+
+    return !removed && (
+        <div
+            data-aos="fade-in"
+            className="relative bg-white border-3 border-gray-100 p-4 rounded-md z-10 min-w-[300px]"
+        >
+            <button
+                onClick={handleRemove}
+                className="float-right text-gray-400 hover:text-gray-600 no-padding"
+                aria-label="Remove"
+            >
+                <FaTimes />
+            </button>
+            {matrix.length > 0 ? (
+                <p className="mb-2 font-bold">Commencez par remplir la matrice.</p>
+            ) : (
+                <p className="mb-2 font-bold">Entrez d'abord le nombre de postes...</p>
+            )}
+            {matrix.length > 0 && (
+                <div>
+                    <div className="flex items-center gap-2 mb-1">
+                        <div className="rounded-4xl bg-blue-300 p-2"></div>
+                        <p className="text-sm">Postes</p>
                     </div>
-                )
-            }
+                    <div className="flex items-center gap-2">
+                        <div className="rounded-4xl bg-blue-200 p-2"></div>
+                        <p className="text-sm">Candidats</p>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

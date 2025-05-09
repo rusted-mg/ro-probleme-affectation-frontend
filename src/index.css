@@ -34,9 +34,11 @@ h1 {
   line-height: 1.1;
 }
 
+button:not(.no-padding) {
+  padding: 0.6em 1.2em;
+}
 button {
   border-radius: 5px;
-  padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
@@ -63,7 +65,7 @@ table tr td:not(:first-child) {
   padding: 20px;
 }
 .workspace {
-  padding: 40vh 30vw;
+  padding: 40vh 35vw;
   width: fit-content;
   background-image: radial-gradient(circle, #ccc 1px, transparent 1px);
   background-size: 30px 30px;
