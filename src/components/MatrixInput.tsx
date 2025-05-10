@@ -46,9 +46,9 @@ const MatrixTable = ({
                 <tbody>
                     {matrix.map((row, r) => (
                         <tr key={r}>
-                            <td className="border-2 p-3 border-blue-300 bg-blue-300 text-center font-medium text-white">{r + 1}</td>
+                            <td className="border-2 p-3 border-purple-400 bg-purple-400 text-center font-medium text-white">{r + 1}</td>
                             {row.map((val, c) => {
-                                const cellClassName = `border ${ solution && solution[r] === c && "bg-green-200" }`;
+                                const cellClassName = `border ${ solution && solution[r] === c && "bg-blue-200" }`;
                                 const inputClassName = `w-12 border-none text-center placeholder:text-gray-500 focus:placeholder:text-white ${ solution && solution[r] === c && "solution-input" }`;
                                 
                                 return (
@@ -77,7 +77,7 @@ export const MatrixInput = ({ matrix, query, onMatrixChange }: MatrixInputProps)
     const solution = query.data?.job.result?.solution;
     return (
         <div>
-            <div className="flex items-baseline justify-center gap-15">
+            <div className="flex items-baseline justify-center gap-16">
                 <Indications solutionShowed={solutionShowed} matrix={matrix} />
                 <MatrixTable solution={solution} matrix={matrix} onMatrixChange={onMatrixChange} />
             </div>

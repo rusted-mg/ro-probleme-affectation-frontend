@@ -31,13 +31,13 @@ export const Indications = ({
                             <p className="text-sm">Postes</p>
                         </div>
                         <div className="flex items-center gap-2 mb-1">
-                            <div className="rounded-4xl bg-blue-200 p-2"></div>
+                            <div className="rounded-4xl bg-purple-400 p-2"></div>
                             <p className="text-sm">Candidats</p>
                         </div>
                         {
                             solutionShowed && (
                                 <div className="flex items-center gap-2">
-                                    <div className="rounded-4xl bg-green-200 p-2"></div>
+                                    <div className="rounded-4xl bg-blue-200 p-2"></div>
                                     <p className="text-sm">Solutions</p>
                                 </div>
                             )

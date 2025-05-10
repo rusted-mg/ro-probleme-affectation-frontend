@@ -4,7 +4,7 @@
 }
 
 :root {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, sans-serif !important;
   line-height: 1.5;
   font-weight: 400;
 
@@ -34,45 +34,6 @@ h1 {
   line-height: 1.1;
 }
 
-button:not(.no-padding) {
-  padding: 0.6em 1.2em;
-}
-button:not(.landing-page-button) {
-  border-radius: 5px;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-input:not(.solution-input), select {
-  background-color: white;
-  color: #242424;
-}
-table tr td:not(:first-child) {
-  border: solid var(--color-gray-200) 2px;
-  padding: 10px;
-}
-.matrix-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-.workspace-container {
-  background-image: radial-gradient(circle, var(--color-blue-300) 1px, transparent 1px);
-  background-size: 40px 40px;
-  padding: 40vh 35vw;
-  width: fit-content;
-}
-.debug {
-  border: solid red 1px !important;
-}
 @media (prefers-color-scheme: light) {
   :root {
     color: #ffffff;

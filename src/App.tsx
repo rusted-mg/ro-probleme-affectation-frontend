@@ -7,12 +7,13 @@ import Aos from 'aos';
 import "aos/dist/aos.css";
 
 const App: React.FC = () => {
+    
     useEffect(() => {
         Aos.init({
-        duration: 600,
-        easing: 'ease-in',
-        offset: 0, 
-        once: true
+            duration: 600,
+            easing: 'ease-in',
+            offset: 0, 
+            once: true
         });
     }, []);
 

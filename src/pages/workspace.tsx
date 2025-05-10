@@ -68,7 +68,10 @@ const Workspace: React.FC = () => {
         <div className="workspace-container min-h-screen">
             <div data-aos="fade-down" className="fixed top-5 left-10 flex items-center justify-center gap-2 bg-white p-4 shadow-sm rounded-lg z-10">
                 <Link to="/" className="home-link text-lg">←</Link>
-                <p className="font-bold border-l border-gray-200 px-2">Espace de travail</p>
+                <div className="flex justify-center items-center border-l border-gray-200 px-2 gap-2">
+                    <img src="/src/assets/logo-outline-xl.png" alt="Logo" className="w-[30px]"/>
+                    <p className="font-bold">Espace de travail</p>
+                </div>
             </div>
             <div className="workspace-main" style={{ transform: `scale(${zoom / 100})`, transformOrigin: "top left" }}>
                 <div className="flex items-baseline justify-center gap-10">

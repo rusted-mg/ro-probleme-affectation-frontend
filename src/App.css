@@ -1,20 +1,12 @@
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-.tsqd-open-btn-container.hide {
-  visibility: hidden;
+/* Utilities */
+.debug {
+  border: solid red 1px !important;
 }
 
 /* Lading Page */
+body:has(.container) {
+  overflow: hidden !important;
+}
 .container {
     display: flex;
     justify-content: center;
@@ -22,29 +14,33 @@
     height: 100vh;
     width: 100%;
     text-align: center;
+    overflow: hidden !important;
+    padding-left: 300px;
+    padding-right: 300px;
 }
 .content {
-    max-width: 1000px;
-    padding: 20px;
+  padding-bottom: 50px;
+}
+.styled-text {
+  color:var(--color-blue-500);
+  background: 
+  linear-gradient(
+    137.48deg,
+    #1b4fde 10%,
+    #fe53bb 45%,
+    #8f51ea 67%,
+    #0044ff 87%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+  animation: gradient_301 5s ease infinite;
+  background-position: 100% 50%;
 }
 .heading {
     font-size: 4.55rem;
     margin-bottom: 2.5rem;
-    color:var(--color-blue-500);
-    background: 
-    linear-gradient(
-      137.48deg,
-      #1b4fde 10%,
-      #fe53bb 45%,
-      #8f51ea 67%,
-      #0044ff 87%
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    background-size: 200% 200%;
-    animation: gradient_301 5s ease infinite;
-    background-position: 100% 50%;
 }
 .text {
     font-size: 1.125rem;
@@ -57,29 +53,7 @@
     gap: 1rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
+/* Scrollbar */
 ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
@@ -97,4 +71,183 @@
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--color-gray-300);
+}
+
+/* From Uiverse.io by LeonKohli */
+.synthwave-container {
+  --neon-pink: #ff2d95;
+  --neon-blue: #08f7fe;
+  --neon-purple: #b537f2;
+  --hot-pink: #ff71ce;
+  --cyber-yellow: #f3ea5f;
+  --electric-blue: #05d9e8;
+}
+
+.synthwave-wrapper {
+  position: relative;
+  transform-style: preserve-3d;
+  animation: synth-float 6s ease-in-out infinite;
+}
+
+@keyframes synth-float {
+  0%,
+  100% {
+    transform: translateY(0) rotateX(0);
+  }
+  50% {
+    transform: translateY(-20px) rotateX(5deg);
+  }
+}
+
+.synthwave-grid {
+  position: absolute;
+  width: 400%;
+  height: 400%;
+  top: -150%;
+  left: -150%;
+  background-image: linear-gradient(
+      0deg,
+      rgba(181, 55, 242, 0.1) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(181, 55, 242, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+  transform: perspective(500px) rotateX(60deg);
+  animation: synth-grid-movement 15s linear infinite;
+  z-index: -1;
+}
+
+.synthwave-laser-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.synthwave-laser {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--neon-pink),
+    var(--neon-blue),
+    transparent
+  );
+  opacity: 0;
+  animation: synth-laser-movement 4s linear infinite;
+}
+
+.synthwave-laser:nth-child(1) {
+  top: 20%;
+  animation-delay: 0s;
+}
+.synthwave-laser:nth-child(2) {
+  top: 40%;
+  animation-delay: 1s;
+}
+.synthwave-laser:nth-child(3) {
+  top: 60%;
+  animation-delay: 2s;
+}
+.synthwave-laser:nth-child(4) {
+  top: 80%;
+  animation-delay: 3s;
+}
+
+.synthwave-reflection {
+  position: absolute;
+  top: 0;
+  left: -200%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transform: skewX(-45deg);
+  animation: synth-reflection 3s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes synth-grid-movement {
+  0% {
+    transform: perspective(500px) rotateX(60deg) translateY(0);
+  }
+  100% {
+    transform: perspective(500px) rotateX(60deg) translateY(40px);
+  }
+}
+
+@keyframes synth-laser-movement {
+  0% {
+    transform: translateX(-100%) skewY(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(100%) skewY(0deg);
+    opacity: 0;
+  }
+}
+
+@keyframes synth-reflection {
+  0% {
+    left: -200%;
+  }
+  100% {
+    left: 200%;
+  }
+}
+
+/* Workspace */
+button:not(.no-padding) {
+  padding: 0.6em 1.2em;
+}
+button:not(.landing-page-button) {
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: 500;
+}
+button {
+  font-family: inherit;
+  cursor: pointer;
+  transition: transform 200ms;
+}
+button:hover {
+  transform: scale(1.02) !important;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+input:not(.solution-input), select {
+  background-color: white;
+  color: #242424;
+}
+table tr td:not(:first-child) {
+  border: solid var(--color-gray-200) 2px;
+  padding: 10px;
+}
+.matrix-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.workspace-container {
+  background-image: radial-gradient(circle, var(--color-blue-300) 1px, transparent 1px);
+  background-size: 40px 40px;
+  padding: 40vh 35vw;
+  width: fit-content;
 }
