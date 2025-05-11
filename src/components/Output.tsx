@@ -1,20 +1,9 @@
 import React from "react";
 import { FaSpinner, FaCheckCircle } from "react-icons/fa";
+import { Query } from "../model/Query";
 
 interface OutputProps {
-    query: {
-        isLoading: boolean;
-        isSuccess: boolean;
-        data?: {
-            job: {
-                status: string;
-                result?: {
-                    optimalValue: number;
-                    solution: number[];
-                };
-            };
-        };
-    };
+    query: Query;
 }
 
 const LoadingState: React.FC = () => (

@@ -3,49 +3,74 @@ import "jspdf-autotable";
 import autoTable from "jspdf-autotable";
 import domtoimage from "dom-to-image";
 
-export const generatePdf = async (optimization: string, optimalValue: number | undefined, solution: number[]) => {
-    const doc = new jsPDF();
+const addHeader = (doc: jsPDF, title: string) => {
+    doc.setFontSize(20);
+    doc.setTextColor(128);
+    doc.text(title, 105, 20, { align: "center" });
 
-    const matrixTableElement = document.getElementById("matrix-table");
+    doc.setDrawColor(128);
+    doc.line(10, 25, 200, 25);
+};
+
+const addLegend = (doc: jsPDF) => {
+    doc.setFillColor("#f2f2f2");
+    doc.rect(10, 255, 190, 35, "F");
+
+    doc.setFontSize(10);
+
+    doc.setFillColor(59, 130, 246);
+    doc.rect(15, 260, 5, 5, "F");
+    doc.setTextColor(0);
+    doc.text(" Postes", 22, 264);
+
+    doc.setFillColor(139, 92, 246);
+    doc.rect(15, 270, 5, 5, "F");
+    doc.text(" Candidats", 22, 274);
+
+    doc.setFillColor(191, 219, 254);
+    doc.rect(15, 280, 5, 5, "F");
+    doc.text(" Solutions", 22, 284);
+};
+
+const addMatrixImage = async (doc: jsPDF, elementId: string) => {
+    const matrixTableElement = document.getElementById(elementId);
     if (matrixTableElement) {
         try {
             const imgData = await domtoimage.toPng(matrixTableElement);
-
-            doc.setFontSize(20);
-            doc.setTextColor(128);
-            doc.text("Source", 105, 20, { align: "center" });
-
-            doc.setDrawColor(128);
-            doc.line(10, 25, 200, 25);
-
             doc.addImage(imgData, "PNG", 10, 30, 190, 0);
         } catch (error) {
             console.error("Erreur lors de la capture de l'image :", error);
         }
     }
+};
 
-    doc.addPage();
-
-    doc.setFontSize(20);
-    doc.setTextColor(128);
-    doc.text("Solution", 105, 20, { align: "center" });
-
-    doc.setDrawColor(128);
-    doc.line(10, 25, 200, 25);
-
+const addResolutionDetails = (doc: jsPDF, optimization: string, optimalValue: number | undefined, solution: number[]) => {
     doc.setFontSize(12);
     doc.setTextColor(0);
-    doc.text(`Type d'optimization: ${optimization === "MIN" ? "minimisation" : "maximisation"}`, 15, 40);
-    doc.text(`Valeur optimale: ${optimalValue}`, 15, 50);
+    doc.text(`- Type d'optimisation: ${optimization === "MIN" ? "minimisation" : "maximisation"}`, 15, 40);
+    doc.text(`- Valeur optimale calculée: ${optimalValue}`, 15, 50);
+    doc.text(`- Correspondance:`, 15, 60);
 
     const tableData = solution.map((value, index) => [index + 1, value + 1]);
     autoTable(doc, {
         head: [["N°Poste", "N°Candidat"]],
         body: tableData,
-        startY: 60,
+        startY: 70,
         headStyles: { fontSize: 12, halign: "center" },
         bodyStyles: { fontSize: 12, cellPadding: { top: 4, bottom: 4 }, halign: "center" },
     });
+};
+
+export const generatePdf = async (optimization: string, optimalValue: number | undefined, solution: number[]) => {
+    const doc = new jsPDF();
+
+    addHeader(doc, "Source");
+    await addMatrixImage(doc, "matrix-table");
+    addLegend(doc);
+
+    doc.addPage();
+    addHeader(doc, "Résolution");
+    addResolutionDetails(doc, optimization, optimalValue, solution);
 
     const dateTime = new Date().toISOString().replace(/[:.]/g, "-");
     doc.save(`resultat_${dateTime}.pdf`);

@@ -1,13 +1,14 @@
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { solverService } from "../service/SolverService.ts";
 import { Output } from "../components/Output.tsx";
-import { ZoomControls } from "../components/ZoomControls.tsx";
+import { ZoomControl } from "../components/ZoomControl.tsx";
 import { Sidebar } from "../components/Sidebar.tsx";
 import { MatrixInput } from "../components/MatrixInput.tsx";
-import { generatePdf } from "../utils/pdf-generator.ts";
 import { useQuery } from "@tanstack/react-query";
 import { AiOutlineArrowLeft } from "react-icons/ai";
+import { useWorkspaceHandlers } from "../hooks/useWorkspaceHandlers";
+import { Query } from "../model/Query.ts";
 
 interface WorkspaceProps {
     matrix: (number | null)[][];
@@ -20,19 +21,7 @@ interface WorkspaceProps {
     setOptimization: (optimization: string) => void;
     jobId: (string | undefined);
     setJobId: (jobId: string | undefined) => void;
-    query: {
-        isLoading: boolean;
-        isSuccess: boolean;
-        data?: {
-            job: {
-                status: string;
-                result?: {
-                    optimalValue: number;
-                    solution: number[];
-                };
-            };
-        };
-    };
+    query: Query;
 }
 
 type WorkspaceContentProps = Pick<WorkspaceProps, 'matrix' | 'setMatrix' | 'matrixSize' | 'query' | 'zoom'>;
@@ -53,7 +42,13 @@ const WorkspaceHeader = () => {
     );
 }
 
-const WorkspaceContent: React.FC<WorkspaceContentProps> = ({ matrix, setMatrix, matrixSize, query, zoom }) => {
+const WorkspaceContent: React.FC<WorkspaceContentProps> = ({ 
+    matrix, 
+    setMatrix, 
+    matrixSize, 
+    query, 
+    zoom 
+}) => {
     const contentStyle = { transform: `scale(${zoom / 100})`, transformOrigin: "top left" };
     
     const handleMatrixChange = (row: number, col: number, newValue: string) => {
@@ -84,52 +79,32 @@ const WorkspaceSidebar: React.FC<WorkspaceSidebarProps> = ({
     optimization,
     setOptimization,
     setJobId,
-    query
+    query,
 }) => {
-    const handleMatrixSizeChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const oldSize = matrixSize;
-        const newSize = Number(e.target.value);
-        const newMatrix = Array(newSize).fill(null)
-            .map((_, r) => Array(newSize).fill(null)
-            .map((_, c) => (r < oldSize && c < oldSize) ? matrix[r][c] : null)
-        )
-        setMatrixSize(newSize);
-        setMatrix(newMatrix);
-    };
-
-    const handleSubmit = async () => {
-        const matrixInput = matrix.map((row) => row.map((val) => val || 0));
-        const uuid = await solverService.launchJob(matrixInput, optimization === "MAX" ? optimization : "MIN");
-        setJobId(uuid);
-        window.scrollTo({ top:0, left: document.body.scrollWidth, behavior: "smooth" });
-    };
-
-    const handleReset = () => {
-        setMatrixSize(2);
-        setMatrix([[null, null], [null, null]]);
-        setOptimization("MIN");
-        setJobId("");
-    };
-
-    const handleExportToPdf = async () => {
-        if (query.data?.job.result) {
-            generatePdf(optimization, query.data?.job.result?.optimalValue, query.data?.job.result?.solution || []);
-        }
-    };
+    const { handleMatrixSizeChange, handleSubmit, handleReset, handleExportToPdf } = useWorkspaceHandlers({
+        matrix,
+        setMatrix,
+        matrixSize,
+        setMatrixSize,
+        optimization,
+        setOptimization,
+        setJobId,
+        query,
+    });
 
     return (
-        <Sidebar 
+        <Sidebar
             query={query}
-            matrixSize={matrixSize} 
-            optimization={optimization} 
-            setOptimization={setOptimization} 
-            handleMatrixSizeChange={handleMatrixSizeChange} 
-            handleSubmit={handleSubmit} 
-            handleReset={handleReset} 
-            handleExportToPdf={handleExportToPdf} 
+            matrixSize={matrixSize}
+            optimization={optimization}
+            setOptimization={setOptimization}
+            handleMatrixSizeChange={handleMatrixSizeChange}
+            handleSubmit={handleSubmit}
+            handleReset={handleReset}
+            handleExportToPdf={handleExportToPdf}
         />
-    )
-}
+    );
+};
 
 const Workspace = () => {
     const [jobId, setJobId] = useState<string>();
@@ -164,7 +139,7 @@ const Workspace = () => {
                 query={query}
                 zoom={zoom}
             />
-            <ZoomControls
+            <ZoomControl
                 zoom={zoom}
                 setZoom={setZoom}
             />

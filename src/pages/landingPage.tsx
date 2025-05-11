@@ -29,7 +29,7 @@ const LinkToWorkspace = () => {
 const LandingPageContent = () => {
     return (
         <div className="landing-page-content">
-            <div className="flex justify-center mb-8" data-aos="fade-in" data-aos-delay="800">
+            <div className="flex justify-center mb-8" data-aos="fade-in" data-aos-delay="600">
                 <img className="w-[60px]" src="/src/assets/logo-outline-xl.png" alt="Logo" />
             </div>
             <h1 data-aos="fade-down"  className="heading styled-text font-bold">Optimisation d'affectation</h1>

@@ -1,22 +1,11 @@
 import { ChangeEvent } from "react";
 import { GiBrain, GiBackwardTime, GiFiles, GiOfficeChair, GiSettingsKnobs } from "react-icons/gi";
+import { Query } from "../model/Query";
 
 interface SidebarProps {
     matrixSize: number;
     optimization: string;
-    query: {
-        isLoading: boolean;
-        isSuccess: boolean;
-        data?: {
-            job: {
-                status: string;
-                result?: {
-                    optimalValue: number;
-                    solution: number[];
-                };
-            };
-        };
-    };
+    query: Query;
     setOptimization: (value: string) => void;
     handleMatrixSizeChange: (e: ChangeEvent<HTMLInputElement>) => void;
     handleSubmit: () => void;
@@ -57,7 +46,7 @@ const ButtonContainer = ({
     );
 };
 
-const Form = ({ 
+const SidebarForm = ({ 
     matrixSize, 
     optimization, 
     setOptimization, 
@@ -111,7 +100,7 @@ export const Sidebar = ({
             <div className="flex-center mb-7 styled-text text-4xl font-bold mt-3">
                 Paramètres
             </div>
-            <Form 
+            <SidebarForm 
                 matrixSize={matrixSize} 
                 optimization={optimization} 
                 setOptimization={setOptimization} 
