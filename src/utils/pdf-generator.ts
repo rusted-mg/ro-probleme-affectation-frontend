@@ -16,19 +16,19 @@ const addLegend = (doc: jsPDF) => {
     doc.setFillColor("#f2f2f2");
     doc.rect(10, 255, 190, 35, "F");
 
-    doc.setFontSize(10);
+    doc.setFontSize(12);
 
     doc.setFillColor(59, 130, 246);
-    doc.rect(15, 260, 5, 5, "F");
+    doc.circle(17.5, 262.5, 2.5, "F");
     doc.setTextColor(0);
     doc.text(" Postes", 22, 264);
 
     doc.setFillColor(139, 92, 246);
-    doc.rect(15, 270, 5, 5, "F");
+    doc.circle(17.5, 272.5, 2.5, "F");
     doc.text(" Candidats", 22, 274);
 
     doc.setFillColor(191, 219, 254);
-    doc.rect(15, 280, 5, 5, "F");
+    doc.circle(17.5, 282.5, 2.5, "F");
     doc.text(" Solutions", 22, 284);
 };
 
