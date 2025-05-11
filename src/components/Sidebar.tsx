@@ -35,20 +35,20 @@ const ButtonContainer = ({
             {
                 query.isSuccess && query.data?.job.status === "COMPLETED" && query.data?.job.result ? (
                     <>
-                        <button className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded flex items-center justify-center" onClick={handleExportToPdf}>
+                        <button className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded flex-center" onClick={handleExportToPdf}>
                             <GiFiles className="mr-2" /> Exporter en pdf
                         </button>
                         <div className="flex gap-2">
-                            <button title="Résoudre à nouveau" className="w-full bg-blue-200 hover:bg-blue-300 text-blue-500 py-2 px-4 rounded flex items-center justify-center" onClick={handleSubmit}>
+                            <button title="Résoudre à nouveau" className="w-full bg-blue-200 hover:bg-blue-300 text-blue-500 py-2 px-4 rounded flex-center" onClick={handleSubmit}>
                                 <GiBrain className="mr-2" />
                             </button>
-                            <button title="Réinitialiser" className="w-full bg-blue-200 hover:bg-blue-300 text-blue-500 py-2 px-4 rounded flex items-center justify-center" onClick={handleReset}>
+                            <button title="Réinitialiser" className="w-full bg-blue-200 hover:bg-blue-300 text-blue-500 py-2 px-4 rounded flex-center" onClick={handleReset}>
                                 <GiBackwardTime className="mr-2" />
                             </button>
                         </div>
                     </>
                 ) : (
-                    <button className="w-full text-white bg-blue-500 hover:bg-blue-600 py-2 px-4 rounded flex items-center justify-center" onClick={handleSubmit}>
+                    <button className="w-full text-white bg-blue-500 hover:bg-blue-600 py-2 px-4 rounded flex-center" onClick={handleSubmit}>
                         <GiBrain className="mr-2" /> Résoudre
                     </button>
                 )
@@ -108,8 +108,8 @@ export const Sidebar = ({
 }: SidebarProps) => {
     return (
         <div data-aos="fade-left" className="fixed bg-white p-5 shadow-md z-10 top-0 right-0 h-full min-w-[250px]">
-            <div className="flex items-center justify-center mb-7 styled-text text-4xl font-bold mt-3">
-                Parametres
+            <div className="flex-center mb-7 styled-text text-4xl font-bold mt-3">
+                Paramètres
             </div>
             <Form 
                 matrixSize={matrixSize} 

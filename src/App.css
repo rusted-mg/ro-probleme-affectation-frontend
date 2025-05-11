@@ -3,11 +3,17 @@
   border: solid red 1px !important;
 }
 
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Lading Page */
-body:has(.container) {
+body:has(.landing-page-container) {
   overflow: hidden !important;
 }
-.container {
+.landing-page-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,7 +24,7 @@ body:has(.container) {
     padding-left: 300px;
     padding-right: 300px;
 }
-.content {
+.landing-page-content {
   padding-bottom: 50px;
 }
 .styled-text {
