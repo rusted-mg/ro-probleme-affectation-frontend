@@ -42,7 +42,6 @@ export const useWorkspaceHandlers = ({
         const matrixInput = matrix.map((row) => row.map((val) => val || 0));
         const uuid = await solverService.launchJob(matrixInput, optimization === "MAX" ? optimization : "MIN");
         setJobId(uuid);
-        window.scrollTo({ top: 0, left: document.body.scrollWidth, behavior: "smooth" });
     };
 
     const handleReset = () => {

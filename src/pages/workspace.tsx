@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { Link } from "react-router-dom";
 import { solverService } from "../service/SolverService.ts";
 import { Output } from "../components/Output.tsx";
@@ -63,7 +63,7 @@ const WorkspaceContent: React.FC<WorkspaceContentProps> = ({
 
     return (
         <div className="workspace-content" style={contentStyle}>
-            <div className="flex items-baseline justify-center gap-10">
+            <div className="flex items-baseline gap-10">
                 <MatrixInput query={query} matrix={matrix} onMatrixChange={handleMatrixChange} />
                 <Output query={query}/>
             </div>
@@ -106,6 +106,26 @@ const WorkspaceSidebar: React.FC<WorkspaceSidebarProps> = ({
     );
 };
 
+const WorkspaceContainer = ({
+    children, 
+    zoom,
+    matrixSize
+}:{
+    children: ReactNode; 
+    zoom: number; 
+    matrixSize: number;
+}) => {
+    const containerWidth = zoom > 100 && matrixSize > 0 ? `${ zoom * matrixSize }vw` : `fit-content`;
+    const containerHeight = zoom > 100 && matrixSize > 0 ? `${ zoom * matrixSize }vh` : `auto`;
+    const containerStyle = { width: containerWidth, height: containerHeight };
+
+    return (
+        <div className="workspace-container min-h-screen" style={containerStyle}>
+            {children}
+        </div>
+    )
+}
+
 const Workspace = () => {
     const [jobId, setJobId] = useState<string>();
     const [matrixSize, setMatrixSize] = useState(2);
@@ -120,7 +140,7 @@ const Workspace = () => {
     });
 
     return (
-        <div className="workspace-container min-h-screen">
+        <WorkspaceContainer zoom={zoom} matrixSize={matrixSize}>
             <WorkspaceHeader/>
             <WorkspaceSidebar
                 matrix={matrix}
@@ -143,7 +163,7 @@ const Workspace = () => {
                 zoom={zoom}
                 setZoom={setZoom}
             />
-        </div>
+        </WorkspaceContainer>
     );
 };
 

@@ -12,7 +12,7 @@ const ZoomInput = ({
     setIsFocused: (focused: boolean) => void;
 }) => {
     const handleZoomChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newZoom = Math.min(Math.max(Number(e.target.value), 10), 200);
+        const newZoom = Math.min(Math.max(Number(e.target.value), 0), 200);
         setZoom(newZoom);
     };
 
@@ -21,6 +21,7 @@ const ZoomInput = ({
             <input
                 type="number"
                 value={zoom}
+                name="zoomValue"
                 onChange={handleZoomChange}
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}

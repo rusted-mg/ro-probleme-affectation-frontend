@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { FaSpinner, FaCheckCircle } from "react-icons/fa";
 import { Query } from "../model/Query";
 
@@ -35,9 +35,21 @@ const SuccessState: React.FC<{ optimalValue: number; solution: number[] }> = ({ 
     </div>
 );
 
+const OutputContainer = ({
+    children
+}:{
+    children: ReactNode;
+}) => {
+    return (
+        <div className="p-6 rounded-lg max-w-lg ml-2">
+            { children }
+        </div>
+    );
+}
+
 export const Output: React.FC<OutputProps> = ({ query }) => {
     return (
-        <div className="p-6 rounded-lg max-w-lg mx-auto">
+        <OutputContainer>
             {(query.isLoading || (query.isSuccess && query.data?.job.status !== "COMPLETED")) && (
                 <LoadingState />
             )}
@@ -47,6 +59,6 @@ export const Output: React.FC<OutputProps> = ({ query }) => {
                     solution={query.data.job.result.solution}
                 />
             )}
-        </div>
+        </OutputContainer>
     );
 };

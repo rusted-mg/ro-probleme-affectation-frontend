@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { Query } from "../model/Query";
 import { Indications } from "./Indications";
 
@@ -29,10 +30,12 @@ const TableHeader = ({ matrix }: { matrix: (number | null)[][] }) => {
 
 const TableCell = ({
     value,
+    name,
     isSolution,
     onChange,
 }: {
     value: number | null;
+    name: string;
     isSolution: boolean;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) => {
@@ -46,6 +49,7 @@ const TableCell = ({
             <input
                 type="number"
                 value={value || ""}
+                name={name}
                 className={inputClassName}
                 placeholder="0"
                 required={true}
@@ -75,6 +79,7 @@ const TableBody = ({
                         <TableCell
                             key={c}
                             value={val}
+                            name={`tablecell-${r}`}
                             isSolution={!!solution && solution[r] === c}
                             onChange={(e) => onMatrixChange(r, c, e.target.value)}
                         />
@@ -104,6 +109,20 @@ const MatrixTable = ({
     );
 };
 
+const MatrixInputContainer = ({
+    children
+}:{
+    children: ReactNode;
+}) => {
+    return (
+        <div>
+            <div className="flex items-baseline justify-center gap-16">
+                { children }
+            </div>
+        </div>
+    );
+}
+
 export const MatrixInput = ({ matrix, query, onMatrixChange }: MatrixInputProps) => {
     const solutionShowed =
         query.isSuccess &&
@@ -111,11 +130,9 @@ export const MatrixInput = ({ matrix, query, onMatrixChange }: MatrixInputProps)
         query.data?.job.result;
     const solution = query.data?.job.result?.solution;
     return (
-        <div>
-            <div className="flex items-baseline justify-center gap-16">
-                <Indications solutionShowed={solutionShowed} matrix={matrix} />
-                <MatrixTable solution={solution} matrix={matrix} onMatrixChange={onMatrixChange} />
-            </div>
-        </div>
+        <MatrixInputContainer>
+            <Indications solutionShowed={solutionShowed} matrix={matrix} />
+            <MatrixTable solution={solution} matrix={matrix} onMatrixChange={onMatrixChange} />
+        </MatrixInputContainer>
     );
 };

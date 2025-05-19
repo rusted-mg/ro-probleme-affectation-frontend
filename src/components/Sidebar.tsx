@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, ReactNode } from "react";
 import { GiBrain, GiBackwardTime, GiFiles, GiOfficeChair, GiSettingsKnobs } from "react-icons/gi";
 import { Query } from "../model/Query";
 
@@ -61,6 +61,7 @@ const SidebarForm = ({
                 <input
                     className="appearance-none border-2 border-gray-200 rounded-lg w-full py-3 px-3 text-gray-700 leading-tight"
                     type="number"
+                    name="matrixSize"
                     value={matrixSize}
                     min={2}
                     max={10}
@@ -74,6 +75,7 @@ const SidebarForm = ({
                 <select
                     className="appearance-none border-2 border-gray-200 rounded-lg w-full py-3 px-3 text-gray-700 leading-tight"
                     value={optimization}
+                    name="optimizationType"
                     onChange={(e) => setOptimization(e.target.value)}>
                     <option value="MIN" defaultChecked={true}>
                         Minimisation
@@ -84,6 +86,21 @@ const SidebarForm = ({
         </div>
     );
 };
+
+const SidebarContainer = ({
+    children
+}:{
+    children: ReactNode;
+}) => {
+    return (
+        <div data-aos="fade-left" className="fixed bg-white p-5 shadow-md z-10 top-0 right-0 h-full min-w-[250px]">
+            <div className="flex-center mb-7 styled-text text-4xl font-bold mt-3">
+                Paramètres
+            </div>
+            { children }
+        </div>
+    );
+}
 
 export const Sidebar = ({ 
     matrixSize, 
@@ -96,10 +113,7 @@ export const Sidebar = ({
     handleExportToPdf
 }: SidebarProps) => {
     return (
-        <div data-aos="fade-left" className="fixed bg-white p-5 shadow-md z-10 top-0 right-0 h-full min-w-[250px]">
-            <div className="flex-center mb-7 styled-text text-4xl font-bold mt-3">
-                Paramètres
-            </div>
+        <SidebarContainer>
             <SidebarForm 
                 matrixSize={matrixSize} 
                 optimization={optimization} 
@@ -112,6 +126,6 @@ export const Sidebar = ({
                 handleReset={handleReset} 
                 handleExportToPdf={handleExportToPdf} 
             />
-        </div>
+        </SidebarContainer>
     );
 };

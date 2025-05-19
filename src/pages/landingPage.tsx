@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { GiBrain } from "react-icons/gi";
-import { useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 
 const LinkToWorkspace = () => {
     return (
@@ -57,16 +57,28 @@ const LandingPageBackground = () => {
     );   
 }
 
-const LandingPage: React.FC = () => {
+const LandingPageContainer = ({
+    children
+}:{
+    children: ReactNode;
+}) => {
     useEffect(() => {
         window.scrollTo({ top:0, left: 0});
     }, []);
     
     return (
         <div className="landing-page-container" data-aos="fade-in">
+            { children }
+        </div>
+    );
+}
+
+const LandingPage: React.FC = () => {
+    return (
+        <LandingPageContainer>
             <LandingPageContent/>
             <LandingPageBackground/>
-        </div>
+        </LandingPageContainer>
     );
 };
 
