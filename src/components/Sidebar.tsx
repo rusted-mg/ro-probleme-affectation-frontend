@@ -13,7 +13,7 @@ interface SidebarProps {
     handleExportToPdf: () => void;
 }
 
-const ButtonContainer = ({ 
+const SidebarButtonContainer = ({ 
     query, 
     handleSubmit, 
     handleReset, 
@@ -87,7 +87,7 @@ const SidebarForm = ({
     );
 };
 
-const SidebarButton = ({
+const SidebarToggler = ({
     showMenu,
     setShowMenu
 }:{
@@ -96,13 +96,13 @@ const SidebarButton = ({
 }) => {
     const menuButtonContainerClassName = `fixed top-0 right-0 py-2 z-20 m-4 ${!showMenu && 'rounded-md bg-white shadow-sm'}`;
 
-    const toogleMenuVisibility = () => {
+    const toggleMenuVisibility = () => {
         setShowMenu(!showMenu);
     }
 
     return (
         <div data-aos="fade-left" className={menuButtonContainerClassName}>
-            <button onClick={toogleMenuVisibility} className="flex items-center gap-1">
+            <button onClick={toggleMenuVisibility} className="flex items-center gap-1">
                 <span className="menu-dot rounded-full bg-pink-600"></span>
                 <span className="menu-dot rounded-full bg-purple-600"></span>
                 <span className="menu-dot rounded-full bg-blue-600"></span>
@@ -120,7 +120,7 @@ const SidebarContainer = ({
 
     return (
         <>
-            <SidebarButton showMenu={showMenu} setShowMenu={setShowMenu}/>
+            <SidebarToggler showMenu={showMenu} setShowMenu={setShowMenu}/>
             {
                 showMenu && 
                 <div data-aos="fade-left" data-aos-duration="10" className="fixed bg-white p-5 pl-6 pr-8 shadow-md z-10 top-0 right-0 h-full min-w-[260px]">
@@ -152,7 +152,7 @@ export const Sidebar = ({
                 setOptimization={setOptimization} 
                 handleMatrixSizeChange={handleMatrixSizeChange} 
             />
-            <ButtonContainer 
+            <SidebarButtonContainer 
                 query={query} 
                 handleSubmit={handleSubmit} 
                 handleReset={handleReset} 
