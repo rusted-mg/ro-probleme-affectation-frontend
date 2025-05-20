@@ -123,7 +123,7 @@ const SidebarContainer = ({
             <SidebarToggler showMenu={showMenu} setShowMenu={setShowMenu}/>
             {
                 showMenu && 
-                <div data-aos="fade-left" data-aos-duration="10" className="fixed bg-white p-5 pl-7 pr-8 shadow-md z-10 top-0 right-0 h-full min-w-[260px]">
+                <div data-aos="fade-left" data-aos-duration="10" className="fixed bg-white p-5 pl-7 pr-8 shadow-md z-10 top-0 right-0 h-full min-w-[270px]">
                     <div className="flex-center mb-7 styled-text text-4xl font-bold mt-8">
                         Paramètres
                     </div>
