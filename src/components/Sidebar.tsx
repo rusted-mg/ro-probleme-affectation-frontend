@@ -101,7 +101,7 @@ const SidebarButton = ({
     }
 
     return (
-        <div className={menuButtonContainerClassName}>
+        <div data-aos="fade-left" className={menuButtonContainerClassName}>
             <button onClick={toogleMenuVisibility} className="flex items-center gap-1">
                 <span className="menu-dot rounded-full bg-pink-600"></span>
                 <span className="menu-dot rounded-full bg-purple-600"></span>
@@ -116,14 +116,14 @@ const SidebarContainer = ({
 }:{
     children: ReactNode;
 }) => {
-    const [showMenu, setShowMenu] = useState<boolean>(true);
+    const [showMenu, setShowMenu] = useState<boolean>(false);
 
     return (
         <>
             <SidebarButton showMenu={showMenu} setShowMenu={setShowMenu}/>
             {
                 showMenu && 
-                <div data-aos="fade-left" className="fixed bg-white p-5 pl-6 pr-8 shadow-md z-10 top-0 right-0 h-full min-w-[260px]">
+                <div data-aos="fade-left" data-aos-duration="10" className="fixed bg-white p-5 pl-6 pr-8 shadow-md z-10 top-0 right-0 h-full min-w-[260px]">
                     <div className="flex-center mb-7 styled-text text-4xl font-bold mt-7">
                         Paramètres
                     </div>
