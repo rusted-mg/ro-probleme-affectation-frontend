@@ -124,7 +124,7 @@ const SidebarContainer = ({
             {
                 showMenu && 
                 <div data-aos="fade-left" data-aos-duration="10" className="fixed bg-white p-5 pl-6 pr-8 shadow-md z-10 top-0 right-0 h-full min-w-[260px]">
-                    <div className="flex-center mb-7 styled-text text-4xl font-bold mt-7">
+                    <div className="flex-center mb-7 styled-text text-4xl font-bold mt-8">
                         Paramètres
                     </div>
                     { children }
