@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactNode } from "react";
+import { ChangeEvent, ReactNode, useState } from "react";
 import { GiBrain, GiBackwardTime, GiFiles, GiOfficeChair, GiSettingsKnobs } from "react-icons/gi";
 import { Query } from "../model/Query";
 
@@ -37,7 +37,7 @@ const ButtonContainer = ({
                         </div>
                     </>
                 ) : (
-                    <button className="w-full text-white bg-blue-500 hover:bg-blue-600 py-2 px-4 rounded flex-center" onClick={handleSubmit}>
+                    <button className="w-full text-white bg-blue-600 hover:bg-blue-700 py-2 px-4 rounded flex-center" onClick={handleSubmit}>
                         <GiBrain className="mr-2" /> Résoudre
                     </button>
                 )
@@ -87,18 +87,50 @@ const SidebarForm = ({
     );
 };
 
+const SidebarButton = ({
+    showMenu,
+    setShowMenu
+}:{
+    showMenu:boolean;
+    setShowMenu: (showMenu: boolean) => void;
+}) => {
+    const menuButtonContainerClassName = `fixed top-0 right-0 py-2 z-20 m-4 ${!showMenu && 'rounded-md bg-white shadow-sm'}`;
+
+    const toogleMenuVisibility = () => {
+        setShowMenu(!showMenu);
+    }
+
+    return (
+        <div className={menuButtonContainerClassName}>
+            <button onClick={toogleMenuVisibility} className="flex items-center gap-1">
+                <span className="menu-dot rounded-full bg-pink-600"></span>
+                <span className="menu-dot rounded-full bg-purple-600"></span>
+                <span className="menu-dot rounded-full bg-blue-600"></span>
+            </button>
+        </div>
+    );
+}
+
 const SidebarContainer = ({
     children
 }:{
     children: ReactNode;
 }) => {
+    const [showMenu, setShowMenu] = useState<boolean>(true);
+
     return (
-        <div data-aos="fade-left" className="fixed bg-white p-5 shadow-md z-10 top-0 right-0 h-full min-w-[250px]">
-            <div className="flex-center mb-7 styled-text text-4xl font-bold mt-3">
-                Paramètres
-            </div>
-            { children }
-        </div>
+        <>
+            <SidebarButton showMenu={showMenu} setShowMenu={setShowMenu}/>
+            {
+                showMenu && 
+                <div data-aos="fade-left" className="fixed bg-white p-5 pl-6 pr-8 shadow-md z-10 top-0 right-0 h-full min-w-[260px]">
+                    <div className="flex-center mb-7 styled-text text-4xl font-bold mt-7">
+                        Paramètres
+                    </div>
+                    { children }
+                </div>
+            }
+        </>
     );
 }
 

@@ -31,7 +31,7 @@ type WorkspaceSidebarProps = Pick<WorkspaceProps, 'matrix' | 'setMatrix' | 'matr
 const WorkspaceHeader = () => {
     return (
         <div data-aos="fade-down" className="fixed top-5 left-10 flex-center gap-2 bg-white p-4 shadow-sm rounded-lg z-10">
-            <Link to="/" className="home-link text-lg">
+            <Link to="/">
                 <AiOutlineArrowLeft className="mr-1" />
             </Link>
             <div className="flex justify-center items-center border-l border-gray-200 px-3 gap-2">

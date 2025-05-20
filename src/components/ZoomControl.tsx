@@ -59,8 +59,8 @@ export const ZoomControl = ({
 
     return (
         <div data-aos="fade-up" className="fixed bottom-5 left-10 flex items-center shadow-sm bg-white p-1 rounded z-10">
-            <button onClick={handleZoomOut} className="px-3 py-1 rounded">
-                -
+            <button onClick={handleZoomOut} className="px-3 py-1 text-blue-600">
+                <span className="text-lg">-</span>
             </button>
             <ZoomInput
                 zoom={zoom}
@@ -68,8 +68,8 @@ export const ZoomControl = ({
                 isFocused={isFocused}
                 setIsFocused={setIsFocused}
             />
-            <button onClick={handleZoomIn} className="px-3 py-1 rounded">
-                +
+            <button onClick={handleZoomIn} className="px-3 py-1 text-blue-600">
+                <span className="text-lg">+</span>
             </button>
         </div>
     );
