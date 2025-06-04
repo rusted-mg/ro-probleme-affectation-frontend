@@ -24,20 +24,20 @@ const SidebarButtonContainer = ({
             {
                 query.isSuccess && query.data?.job.status === "COMPLETED" && query.data?.job.result ? (
                     <>
-                        <button className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded flex-center" onClick={handleExportToPdf}>
+                        <button className="w-full primary-button text-white py-2 px-4 rounded flex-center" onClick={handleExportToPdf}>
                             <GiFiles className="mr-2" /> Exporter en pdf
                         </button>
                         <div className="flex gap-2">
-                            <button title="Résoudre à nouveau" className="w-full bg-blue-200 hover:bg-blue-300 text-blue-500 py-2 px-4 rounded flex-center" onClick={handleSubmit}>
+                            <button title="Résoudre à nouveau" className="w-full bg-purple-200 hover:bg-purple-300 text-purple-500 py-2 px-4 rounded flex-center" onClick={handleSubmit}>
                                 <GiBrain className="mr-2" />
                             </button>
-                            <button title="Réinitialiser" className="w-full bg-blue-200 hover:bg-blue-300 text-blue-500 py-2 px-4 rounded flex-center" onClick={handleReset}>
+                            <button title="Réinitialiser" className="w-full bg-purple-200 hover:bg-purple-300 text-purple-500 py-2 px-4 rounded flex-center" onClick={handleReset}>
                                 <GiBackwardTime className="mr-2" />
                             </button>
                         </div>
                     </>
                 ) : (
-                    <button className="w-full text-white bg-blue-600 hover:bg-blue-700 py-2 px-4 rounded flex-center" onClick={handleSubmit}>
+                    <button className="w-full text-white primary-button  py-2 px-4 rounded flex-center" onClick={handleSubmit}>
                         <GiBrain className="mr-2" /> Résoudre
                     </button>
                 )
@@ -56,7 +56,7 @@ const SidebarForm = ({
         <div className="mb-8">
             <label className="block">
                 <p className="text-left text-gray-500 text-sm mb-4 flex items-center">
-                    <GiOfficeChair className="mr-2 text-blue-500"/> Nombre de postes
+                    <GiOfficeChair className="mr-2 text-purple-500"/> Nombre de postes
                 </p>
                 <input
                     className="appearance-none border-2 border-gray-200 rounded-lg w-full py-3 px-3 text-gray-700 leading-tight"
@@ -70,7 +70,7 @@ const SidebarForm = ({
             </label>
             <label className="block mt-5">
                 <p className="text-left text-gray-500 text-sm mb-4 flex items-center">
-                    <GiSettingsKnobs className="mr-2 text-blue-600" /> Type d'optimisation
+                    <GiSettingsKnobs className="mr-2 text-purple-600" /> Type d'optimisation
                 </p>
                 <select
                     className="appearance-none border-2 border-gray-200 rounded-lg w-full py-3 px-3 text-gray-700 leading-tight"
@@ -102,10 +102,13 @@ const SidebarToggler = ({
 
     return (
         <div data-aos="fade-left" className={menuButtonContainerClassName}>
-            <button onClick={toggleMenuVisibility} className="flex items-center gap-1">
-                <span className="menu-dot rounded-full bg-pink-600"></span>
-                <span className="menu-dot rounded-full bg-purple-600"></span>
-                <span className="menu-dot rounded-full bg-blue-600"></span>
+            <button 
+                onClick={toggleMenuVisibility} 
+                className="flex items-center gap-1 group"
+            >
+                <span className="menu-dot rounded-full bg-pink-600 group-hover:animate-bounce group-hover:[animation-delay:0s]"></span>
+                <span className="menu-dot rounded-full bg-purple-600 group-hover:animate-bounce group-hover:[animation-delay:0.15s]"></span>
+                <span className="menu-dot rounded-full bg-blue-600 group-hover:animate-bounce group-hover:[animation-delay:0.3s]"></span>
             </button>
         </div>
     );

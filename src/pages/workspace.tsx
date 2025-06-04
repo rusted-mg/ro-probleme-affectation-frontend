@@ -107,17 +107,11 @@ const WorkspaceSidebar: React.FC<WorkspaceSidebarProps> = ({
 };
 
 const WorkspaceContainer = ({
-    children, 
-    zoom,
-    matrixSize
+    children,
 }:{
     children: ReactNode; 
-    zoom: number; 
-    matrixSize: number;
 }) => {
-    const containerWidth = zoom > 100 && matrixSize > 0 ? `${ zoom * matrixSize }vw` : `fit-content`;
-    const containerHeight = zoom > 100 && matrixSize > 0 ? `${ zoom * matrixSize }vh` : `auto`;
-    const containerStyle = { width: containerWidth, height: containerHeight };
+    const containerStyle = { width: "fit-content", height: "auto" };
 
     return (
         <div className="workspace-container min-h-screen" style={containerStyle}>
@@ -140,7 +134,7 @@ const Workspace = () => {
     });
 
     return (
-        <WorkspaceContainer zoom={zoom} matrixSize={matrixSize}>
+        <WorkspaceContainer>
             <WorkspaceHeader/>
             <WorkspaceSidebar
                 matrix={matrix}

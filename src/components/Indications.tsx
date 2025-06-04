@@ -35,15 +35,15 @@ export const Indications = ({
     matrix: (number | null)[][];
     solutionShowed: false | { optimalValue: number; solution: number[]; } | undefined;
 }) => {
-    const [removed, setRemoved] = useState(false);
+    const [indicationsRemoved, setIndicationsRemoved] = useState(false);
 
-    return !removed && (
+    return !indicationsRemoved && (
         <div
             data-aos="fade-in"
             className="relative bg-white border-3 border-gray-100 p-4 rounded-md z-10 min-w-[250px]"
         >
             <button
-                onClick={()=>setRemoved(true)}
+                onClick={()=>setIndicationsRemoved(true)}
                 className="float-right text-gray-400 hover:text-gray-600 no-padding"
                 aria-label="Remove"
             >

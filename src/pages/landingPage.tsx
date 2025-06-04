@@ -10,14 +10,13 @@ const LinkToWorkspace = () => {
                 data-aos="fade-up" 
                 className="
                     landing-page-button
+                    primary-button 
                     cursor-pointer
                     text-white 
                     rounded-md 
                     flex 
                     items-center
-                    bg-blue-600
-                    text-lg
-                    hover:bg-blue-700">
+                    text-lg">
                     <GiBrain className="inline-block mr-2 text-xl" />
                     Commencer
                 </button>

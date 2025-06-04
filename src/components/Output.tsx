@@ -15,7 +15,7 @@ const LoadingState: React.FC = () => (
 
 const SuccessState: React.FC<{ optimalValue: number; solution: number[] }> = ({ optimalValue, solution }) => (
     <div data-aos="fade-in">
-        <div className="flex items-center space-x-3 mb-4 text-purple-700">
+        <div className="flex items-center space-x-3 mb-4 text-green-600">
             <FaCheckCircle className="h-4 w-4" />
             <span>Résolution terminée !</span>
         </div>
