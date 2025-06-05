@@ -58,11 +58,11 @@ const SidebarForm = ({
                 <p className="text-left text-md mb-2 flex items-center font-bold">
                     <GiOfficeChair className="mr-2 text-pink-400"/> Nombre de postes
                 </p>
-                <p className="description text-gray-500 text-sm mb-4 ml-5 max-w-[250px] text-justify">
+                <p className="description text-gray-500 text-sm mb-4 ml-6 mr-2 max-w-[250px] text-justify">
                     Indiquez le nombre de postes à affecter.
                 </p>
                 <input
-                    className="appearance-none border-0 border-b-1 border-gray-200 rounded-none w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:border-pink-300"
+                    className="appearance-none border-2 border-gray-100 rounded w-full py-3 px-6 text-gray-700 leading-tight focus:outline-none focus:border-pink-300"
                     type="number"
                     name="matrixSize"
                     value={matrixSize}
@@ -71,15 +71,16 @@ const SidebarForm = ({
                     onChange={handleMatrixSizeChange}
                 />
             </label>
-            <label className="block mt-6">
+            <hr className="my-6 border-gray-200" />
+            <label className="block">
                 <p className="text-left text-md mb-2 flex items-center font-bold">
                     <GiSettingsKnobs className="mr-2 text-pink-500" /> Type d'optimisation
                 </p>
-                <p className="description text-gray-500 text-sm mb-4 ml-5 max-w-[240px] text-justify">
+                <p className="description text-gray-500 text-sm mb-4 ml-6 mr-2 max-w-[240px] text-justify">
                     Indiquez l'optimisation à prendre en compte.
                 </p>
                 <select
-                    className="appearance-none border-0 border-b-1 border-gray-200 rounded-none w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:border-pink-300"
+                    className="appearance-none border-2 border-gray-100 rounded w-full py-3 px-6 text-gray-700 leading-tight focus:outline-none focus:border-pink-300"
                     value={optimization}
                     name="optimizationType"
                     onChange={(e) => setOptimization(e.target.value)}>
@@ -132,7 +133,7 @@ const SidebarContainer = ({
             <SidebarToggler showMenu={showMenu} setShowMenu={setShowMenu}/>
             {
                 showMenu && 
-                <div data-aos="fade-left" data-aos-duration="10" className="fixed bg-white pl-7 pr-8 shadow-md z-10 top-0 right-0 h-full min-w-[270px]">
+                <div data-aos="fade-left" data-aos-duration="10" className="fixed bg-white px-8 shadow-md z-10 top-0 right-0 h-full min-w-[270px]">
                     <div className="mb-8 styled-text text-4xl font-bold mt-8">
                         Paramètres
                     </div>
