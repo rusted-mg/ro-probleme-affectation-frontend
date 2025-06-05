@@ -4,10 +4,9 @@ import { ReactNode, useEffect } from "react";
 
 const LinkToWorkspace = () => {
     return (
-        <div className="buttonGroup">
+        <div data-aos="fade-up"  className="buttonGroup">
             <Link to="/workspace" className="home-link">
                 <button 
-                data-aos="fade-up" 
                 className="
                     landing-page-button
                     primary-button 

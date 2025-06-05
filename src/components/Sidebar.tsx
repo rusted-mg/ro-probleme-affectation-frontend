@@ -24,14 +24,14 @@ const SidebarButtonContainer = ({
             {
                 query.isSuccess && query.data?.job.status === "COMPLETED" && query.data?.job.result ? (
                     <>
-                        <button className="w-full primary-button text-white py-2 px-4 rounded flex-center" onClick={handleExportToPdf}>
+                        <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded flex-center" onClick={handleExportToPdf}>
                             <GiFiles className="mr-2" /> Exporter en pdf
                         </button>
                         <div className="flex gap-2">
-                            <button title="Résoudre à nouveau" className="w-full bg-purple-200 hover:bg-purple-300 text-purple-500 py-2 px-4 rounded flex-center" onClick={handleSubmit}>
+                            <button title="Résoudre à nouveau" className="w-full bg-blue-200 hover:bg-blue-300 text-blue-500 py-2 px-4 rounded flex-center" onClick={handleSubmit}>
                                 <GiBrain className="mr-2" />
                             </button>
-                            <button title="Réinitialiser" className="w-full bg-purple-200 hover:bg-purple-300 text-purple-500 py-2 px-4 rounded flex-center" onClick={handleReset}>
+                            <button title="Réinitialiser" className="w-full bg-blue-200 hover:bg-blue-300 text-blue-500 py-2 px-4 rounded flex-center" onClick={handleReset}>
                                 <GiBackwardTime className="mr-2" />
                             </button>
                         </div>
@@ -55,11 +55,14 @@ const SidebarForm = ({
     return (
         <div className="mb-8">
             <label className="block">
-                <p className="text-left text-gray-500 text-sm mb-4 flex items-center">
-                    <GiOfficeChair className="mr-2 text-purple-500"/> Nombre de postes
+                <p className="text-left text-md mb-2 flex items-center">
+                    <GiOfficeChair className="mr-2 text-pink-400"/> Nombre de postes
+                </p>
+                <p className="description text-gray-400 text-sm mb-4 ml-5 max-w-[185px]">
+                    Indiquez le nombre de postes à affecter.
                 </p>
                 <input
-                    className="appearance-none border-2 border-gray-200 rounded-lg w-full py-3 px-3 text-gray-700 leading-tight"
+                    className="appearance-none border-0 border-b-1 border-gray-200 rounded-none w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:border-pink-300"
                     type="number"
                     name="matrixSize"
                     value={matrixSize}
@@ -68,12 +71,15 @@ const SidebarForm = ({
                     onChange={handleMatrixSizeChange}
                 />
             </label>
-            <label className="block mt-5">
-                <p className="text-left text-gray-500 text-sm mb-4 flex items-center">
-                    <GiSettingsKnobs className="mr-2 text-purple-600" /> Type d'optimisation
+            <label className="block mt-6">
+                <p className="text-left text-md mb-2 flex items-center">
+                    <GiSettingsKnobs className="mr-2 text-pink-500" /> Type d'optimisation
+                </p>
+                <p className="description text-gray-400 text-sm mb-4 ml-5 max-w-[180px]">
+                    Indiquez l'optimisation pour à prendre en compte.
                 </p>
                 <select
-                    className="appearance-none border-2 border-gray-200 rounded-lg w-full py-3 px-3 text-gray-700 leading-tight"
+                    className="appearance-none border-0 border-b-1 border-gray-200 rounded-none w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:border-pink-300"
                     value={optimization}
                     name="optimizationType"
                     onChange={(e) => setOptimization(e.target.value)}>

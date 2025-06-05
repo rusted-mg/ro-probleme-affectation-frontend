@@ -32,7 +32,7 @@ const WorkspaceHeader = () => {
     return (
         <div data-aos="fade-down" className="fixed top-5 left-10 flex-center gap-2 bg-white p-4 shadow-sm rounded-lg z-10">
             <Link to="/">
-                <AiOutlineArrowLeft className="mr-1" />
+                <AiOutlineArrowLeft className="mr-1 text-blue-500" />
             </Link>
             <div className="flex justify-center items-center border-l border-gray-200 px-3 gap-2">
                 <img src="/src/assets/logo-outline-xl.png" alt="Logo" className="w-[30px]"/>
