@@ -116,7 +116,7 @@ const MatrixInputContainer = ({
 }) => {
     return (
         <div>
-            <div className="flex items-baseline justify-center gap-20">
+            <div className="flex items-baseline justify-center gap-16">
                 { children }
             </div>
         </div>

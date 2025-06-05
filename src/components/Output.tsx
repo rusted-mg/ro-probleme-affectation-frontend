@@ -41,7 +41,7 @@ const OutputContainer = ({
     children: ReactNode;
 }) => {
     return (
-        <div className="p-6 rounded-lg max-w-lg ml-2">
+        <div className="p-6 rounded-lg max-w-lg">
             { children }
         </div>
     );

@@ -58,8 +58,8 @@ const SidebarForm = ({
                 <p className="text-left text-md mb-2 flex items-center font-bold">
                     <GiOfficeChair className="mr-2 text-pink-400"/> Nombre de postes
                 </p>
-                <p className="description text-gray-500 text-sm mb-4 ml-6 mr-2 max-w-[250px] text-justify">
-                    Indiquez le nombre de postes à affecter.
+                <p className="description text-gray-500 text-sm mb-4 ml-6 mr-2 max-w-[220px] text-justify">
+                    Indiquez le nombre de postes à pourvoir aux candidats.
                 </p>
                 <input
                     className="appearance-none border-2 border-gray-100 rounded w-full py-3 px-6 text-gray-700 leading-tight focus:outline-none focus:border-pink-300"
@@ -76,8 +76,8 @@ const SidebarForm = ({
                 <p className="text-left text-md mb-2 flex items-center font-bold">
                     <GiSettingsKnobs className="mr-2 text-pink-500" /> Type d'optimisation
                 </p>
-                <p className="description text-gray-500 text-sm mb-4 ml-6 mr-2 max-w-[240px] text-justify">
-                    Indiquez l'optimisation à prendre en compte.
+                <p className="description text-gray-500 text-sm mb-4 ml-6 mr-2 max-w-[220px] text-justify">
+                    Indiquez le type d'optimisation à prendre en compte.
                 </p>
                 <select
                     className="appearance-none border-2 border-gray-100 rounded w-full py-3 px-6 text-gray-700 leading-tight focus:outline-none focus:border-pink-300"
