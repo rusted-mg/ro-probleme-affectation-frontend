@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FaTimes } from "react-icons/fa";
 
 const CurvedArrow = ({
-    width = 65,
+    width = 68,
     height = 20,
     curvature = 0.7,
 }: {
@@ -10,7 +10,7 @@ const CurvedArrow = ({
     height?: number;
     curvature?: number;
 }) => {
-    const startX = 8;
+    const startX = 12;
     const startY = 15;
     const endX = width;
     const endY = 20;
