@@ -216,6 +216,9 @@ body:has(.landing-page-container) {
 }
 
 /* Workspace */
+.transition-padding {
+  transition: padding 600ms ease-in-out !important;
+}
 /* Lading Page */
 .menu-dot {
   width: 0.3rem;
@@ -277,6 +280,6 @@ html:has(.workspace-container) {
   background-size: 40px 40px;
 }
 .workspace-container {
-  padding: 40vh 35vw;
+  padding: 40vh 25vw;
   width: fit-content;
 }

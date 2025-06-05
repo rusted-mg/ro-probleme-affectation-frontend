@@ -55,10 +55,10 @@ const SidebarForm = ({
     return (
         <div className="mb-8">
             <label className="block">
-                <p className="text-left text-md mb-2 flex items-center">
+                <p className="text-left text-md mb-2 flex items-center font-bold">
                     <GiOfficeChair className="mr-2 text-pink-400"/> Nombre de postes
                 </p>
-                <p className="description text-gray-400 text-sm mb-4 ml-5 max-w-[185px]">
+                <p className="description text-gray-500 text-sm mb-4 ml-5 max-w-[250px] text-justify">
                     Indiquez le nombre de postes à affecter.
                 </p>
                 <input
@@ -72,11 +72,11 @@ const SidebarForm = ({
                 />
             </label>
             <label className="block mt-6">
-                <p className="text-left text-md mb-2 flex items-center">
+                <p className="text-left text-md mb-2 flex items-center font-bold">
                     <GiSettingsKnobs className="mr-2 text-pink-500" /> Type d'optimisation
                 </p>
-                <p className="description text-gray-400 text-sm mb-4 ml-5 max-w-[180px]">
-                    Indiquez l'optimisation pour à prendre en compte.
+                <p className="description text-gray-500 text-sm mb-4 ml-5 max-w-[240px] text-justify">
+                    Indiquez l'optimisation à prendre en compte.
                 </p>
                 <select
                     className="appearance-none border-0 border-b-1 border-gray-200 rounded-none w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:border-pink-300"
@@ -100,7 +100,7 @@ const SidebarToggler = ({
     showMenu:boolean;
     setShowMenu: (showMenu: boolean) => void;
 }) => {
-    const menuButtonContainerClassName = `fixed top-0 right-0 py-2 z-20 my-4 mx-5 ${!showMenu && 'rounded-md bg-white shadow-sm'}`;
+    const menuButtonContainerClassName = `fixed top-0 right-0 z-20 my-4 mx-5 transition-padding ${showMenu && 'py-7'} ${!showMenu && 'rounded-md bg-white shadow-sm py-2'}`;
 
     const toggleMenuVisibility = () => {
         setShowMenu(!showMenu);
@@ -125,15 +125,15 @@ const SidebarContainer = ({
 }:{
     children: ReactNode;
 }) => {
-    const [showMenu, setShowMenu] = useState<boolean>(false);
+    const [showMenu, setShowMenu] = useState<boolean>(true);
 
     return (
         <>
             <SidebarToggler showMenu={showMenu} setShowMenu={setShowMenu}/>
             {
                 showMenu && 
-                <div data-aos="fade-left" data-aos-duration="10" className="fixed bg-white p-5 pl-7 pr-8 shadow-md z-10 top-0 right-0 h-full min-w-[270px]">
-                    <div className="flex-center mb-7 styled-text text-4xl font-bold mt-8">
+                <div data-aos="fade-left" data-aos-duration="10" className="fixed bg-white pl-7 pr-8 shadow-md z-10 top-0 right-0 h-full min-w-[270px]">
+                    <div className="mb-8 styled-text text-4xl font-bold mt-8">
                         Paramètres
                     </div>
                     { children }
