@@ -1,42 +1,285 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* Utilities */
+.debug {
+  border: solid red 1px !important;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Lading Page */
+body:has(.landing-page-container) {
+  overflow: hidden !important;
+}
+.landing-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    text-align: center;
+    overflow: hidden !important;
+    padding-left: 300px;
+    padding-right: 300px;
+}
+.landing-page-content {
+  padding-bottom: 50px;
+}
+.styled-text {
+  color:var(--color-blue-500);
+  background: 
+  linear-gradient(
+    137.48deg,
+    #1b4fde 10%,
+    #fe53bb 45%,
+    #8f51ea 67%,
+    #0044ff 87%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+  animation: gradient_301 5s ease infinite;
+  background-position: 100% 50%;
+}
+.heading {
+    font-size: 4.55rem;
+    margin-bottom: 2.5rem;
+}
+.text {
+    font-size: 1.125rem;
+    color: #7489af;
+    margin-bottom: 2.5rem;
+}
+.buttonGroup {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-blue-200);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-blue-300);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-blue-400);
+}
+
+/* From Uiverse.io by LeonKohli */
+.synthwave-container {
+  --neon-pink: #ff2d95;
+  --neon-blue: #08f7fe;
+  --neon-purple: #b537f2;
+  --hot-pink: #ff71ce;
+  --cyber-yellow: #f3ea5f;
+  --electric-blue: #05d9e8;
+}
+
+.synthwave-wrapper {
+  position: relative;
+  transform-style: preserve-3d;
+  animation: synth-float 6s ease-in-out infinite;
+}
+
+@keyframes synth-float {
+  0%,
+  100% {
+    transform: translateY(0) rotateX(0);
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    transform: translateY(-20px) rotateX(5deg);
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+.synthwave-grid {
+  position: absolute;
+  width: 400%;
+  height: 400%;
+  top: -150%;
+  left: -150%;
+  background-image: linear-gradient(
+      0deg,
+      rgba(181, 55, 242, 0.1) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(181, 55, 242, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+  transform: perspective(500px) rotateX(60deg);
+  animation: synth-grid-movement 15s linear infinite;
+  z-index: -1;
+}
+
+.synthwave-laser-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.synthwave-laser {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--neon-pink),
+    var(--neon-blue),
+    transparent
+  );
+  opacity: 0;
+  animation: synth-laser-movement 4s linear infinite;
+}
+
+.synthwave-laser:nth-child(1) {
+  top: 20%;
+  animation-delay: 0s;
+}
+.synthwave-laser:nth-child(2) {
+  top: 40%;
+  animation-delay: 1s;
+}
+.synthwave-laser:nth-child(3) {
+  top: 60%;
+  animation-delay: 2s;
+}
+.synthwave-laser:nth-child(4) {
+  top: 80%;
+  animation-delay: 3s;
+}
+
+.synthwave-reflection {
+  position: absolute;
+  top: 0;
+  left: -200%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transform: skewX(-45deg);
+  animation: synth-reflection 3s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes synth-grid-movement {
+  0% {
+    transform: perspective(500px) rotateX(60deg) translateY(0);
+  }
+  100% {
+    transform: perspective(500px) rotateX(60deg) translateY(40px);
   }
 }
 
-.card {
-  padding: 2em;
+@keyframes synth-laser-movement {
+  0% {
+    transform: translateX(-100%) skewY(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(100%) skewY(0deg);
+    opacity: 0;
+  }
 }
 
-.read-the-docs {
-  color: #888;
+@keyframes synth-reflection {
+  0% {
+    left: -200%;
+  }
+  100% {
+    left: 200%;
+  }
+}
+
+/* Workspace */
+.transition-padding {
+  transition: padding 600ms ease-in-out !important;
+}
+/* Lading Page */
+.menu-dot {
+  width: 0.3rem;
+  height: 0.3rem;
+  border-radius: 50%;
+}
+button:not(.no-padding) {
+  padding: 0.6em 1.2em;
+}
+button:not(.landing-page-button) {
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: 500;
+}
+button {
+  font-family: inherit;
+  cursor: pointer;
+  transition: transform 200ms;
+}
+button:hover {
+  transform: scale(1.02) !important;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+.primary-button {
+  background: 
+  linear-gradient(
+    40.48deg,
+    #fe53bb 15%,
+    #8f51ea 47%,
+    #0044ff 87%
+  );
+  background-size: 100%;
+  transition: background-size 0.6s ease-in-out, background-position 0.6s ease-in-out !important;
+}
+.primary-button:hover {
+  background-size: 200%;
+  background-position: 100% 0%;
+}
+input:not(.solution-input), select {
+  background-color: white;
+  color: #242424;
+}
+table tr td:not(:first-child) {
+  border: solid var(--color-gray-200) 2px;
+  padding: 10px;
+}
+.matrix-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+html:has(.workspace-container) {
+  background-image: radial-gradient(circle, var(--color-purple-300) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.workspace-container {
+  padding: 40vh 25vw;
+  width: fit-content;
 }
